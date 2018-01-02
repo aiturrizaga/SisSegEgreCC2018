@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../template/TemplateOne.xhtml">
+
+            <ui:define name="menu1">
+                <li class="active"><a href="../content/dashboard.xhtml"><i class="material-icons blue-text text-darken-1">dashboard</i>Dashboard</a></li>
+            </ui:define>
+
+            <ui:define name="content">
+                <div class="row">
+                    <div class="col s12 m3">
+                        <div class="card blue white-text">  
+                            <div class="card-content valign-wrapper">
+                                <div class="card-text">
+                                    <h6>Estudiantes</h6>
+                                    <p>Cantidad de alumnos</p>
+                                </div>
+                                <div class="card-icon">
+                                    <!--<i class="material-icons medium valign"></i>-->
+                                    <h4>#{alumnosController.alum.countPersonaTemp}</h4>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">Ver Alumnos</a>
+                            </div>
+                        </div>
+                        <div class="card green white-text">  
+                            <div class="card-content valign-wrapper">
+                                <div class="card-text">
+                                    <h6>Colegios</h6>
+                                    <p>Cantidad de colegios</p>
+                                </div>
+                                <div class="card-icon">
+                                    <h4>#{colegiosController.col.countColegio}</h4>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">Ver Colegios</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m3">
+                        <div class="card white">  
+                            <p:dataTable value="#{alumnosController.lstTopColegios}" var="al" scrollable="true" scrollHeight="290">
+                                <f:facet name="header">
+                                    <p:outputLabel value="RANKING DE COLEGIOS"/>
+                                </f:facet>
+                                <p:column headerText="COLEGIO" style="width: 65%">
+                                    <p:outputLabel value="#{al.NOMBRE}" style="font-size: 0.7rem"/>
+                                </p:column>
+                                <p:column headerText="ALUMNOS">
+                                    <center><p:outputLabel value="#{al.CANTIDAD}" style="color: #01579b"/></center>
+                                </p:column>
+                            </p:dataTable>
+                        </div>
+                    </div>
+                    <div class="col s12 m6">
+                        <div class="card orange white-text">  
+                            <div class="card-content valign-wrapper">
+                                <h:form>
+                                    <h:panelGroup id="panel" layout="block">
+                                        <p:chart type="pie" model="#{alumnosController.pieModel}" style="width:500px;height:300px;" rendered="#{alumnosController.pieModel != null}" responsive="true"/>
+                                    </h:panelGroup>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m6">
+                        <div class="card orange white-text">  
+                            <div class="card-content valign-wrapper">
+                                <h:form>
+                                    <h:panelGroup id="panel" layout="block">
+                                        <p:chart type="pie" model="#{alumnosController.pieModel1}" style="width:500px;height:300px;" rendered="#{alumnosController.pieModel1 != null}" responsive="true"/>
+                                    </h:panelGroup>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m6">
+                        <div class="card orange white-text">  
+                            <div class="card-content valign-wrapper">
+                                <h:form>
+                                    <h:panelGroup id="panel" layout="block">
+                                        <p:chart type="pie" model="#{alumnosController.pieModel2}" style="width:500px;height:300px;" rendered="#{alumnosController.pieModel2 != null}" responsive="true"/>
+                                    </h:panelGroup>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

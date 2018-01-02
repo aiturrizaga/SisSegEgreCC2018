@@ -1,0 +1,248 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../template/TemplateOne.xhtml">
+
+            <ui:define name="title">Estudiantes</ui:define>
+            <ui:define name="li"></ui:define>
+
+            <ui:define name="menu2">
+                <li class="active"><a href="../content/student.xhtml"><i class="material-icons blue-text text-darken-1">face</i>Estudiantes</a></li>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="form">
+                    <p:growl id="msg" autoUpdate="true" showDetail="true"/>
+                    <div class="row">
+                        <div class="col s12 m3">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title">Datos del Colegio</span>
+                                    <div class="row">
+                                        <div class="col s12 m12">
+                                            <p:autoComplete dropdown="true" maxResults="10"
+                                                            placeholder="Nombre del colegio"
+                                                            value="#{alumnosController.alum.cod_col}" 
+                                                            completeMethod="#{alumnosController.completeTextCol}"
+                                                            style="width: 90%" id="autocompleteColegios" maxlength="15"/>
+                                            <p:focus id="fcAcColegios" context="autocompleteColegios"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 m4">
+                                            <p:inputText id="txtPromo" value="#{alumnosController.alum.promo_est}" maxlength="4"/>
+                                            <label for="txtPromo">Promoción</label>
+                                        </div>
+                                        <div class="input-field col s12 m4">
+                                            <p:inputText id="txtGrado" value="#{alumnosController.alum.year_est}" maxlength="1"/>
+                                            <label for="txtGrado">Grado</label>
+                                        </div>
+                                        <div class="input-field col s12 m4">
+                                            <p:inputText id="txtSec" value="#{alumnosController.alum.sec_est}" style="text-transform: uppercase"/>
+                                            <label for="txtSec">Sección</label>
+                                        </div>
+                                    </div>
+                                    <div class="row"></div><div class="row"></div><div class="row"></div><div class="row"></div><div class="row"></div>
+                                    <div class="row"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m6">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title">Datos del Alumno</span>
+                                    <div class="row">
+                                        <div class="input-field col s12 m2">
+                                            <p:inputMask mask="99999999" id="txtDni" value="#{alumnosController.alum.dni_est}"/>
+                                            <label for="txtDni">DNI</label>
+                                        </div>
+                                        <div class="input-field col s12 m4">
+                                            <p:inputText id="txtNom" value="#{alumnosController.alum.nom_est}" style="text-transform: capitalize" />
+                                            <label for="txtNom">Nombres</label>
+                                        </div>
+                                        <div class="input-field col s12 m6">
+                                            <p:inputText id="txtApe" value="#{alumnosController.alum.ape_est}" style="text-transform: uppercase"/>
+                                            <label for="txtApe">Apellidos</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 m5">
+                                            <p:inputText id="txtDir" value="#{alumnosController.alum.direc_est}" style="text-transform: capitalize"/>
+                                            <label for="txtDir">Dirección</label>
+                                        </div>
+                                        <div class="input-field col s12 m5">
+                                            <p:inputText id="txtRef" value="#{alumnosController.alum.ref_est}" style="text-transform: lowercase"/>
+                                            <label for="txtRef">Referencia</label>
+                                        </div>
+                                        <div class="input-field col s12 m2">
+                                            <p:inputMask mask="999999999" id="txtCel" value="#{alumnosController.alum.cel_est}"/>
+                                            <label for="txtCel">Celular</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 m3">
+                                            <p:calendar  navigator="true" placeholder="Fec. Nac." value="#{alumnosController.alum.fecnac_est}" mask="true"/>
+                                        </div>
+                                        <div class="input-field col s12 m4">
+                                            <p:inputText id="txtCorreo" value="#{alumnosController.alum.correo_est}"/>
+                                            <label for="txtCorreo">Email</label>
+                                        </div>
+                                        <div class="input-field col s12 m5">
+                                            <p:autoComplete dropdown="true" maxResults="16" 
+                                                            placeholder="Disrito" value="#{alumnosController.alum.ubigeo_est}"
+                                                            completeMethod="#{alumnosController.completeTextUbi}"
+                                                            style="width: 90%"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m3">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title">Datos para Beca 18</span>
+                                    <div class="row">
+                                        <div class="input-field col s12 m6">
+                                            <p:inputText id="txtN1" type="number" value="#{alumnosController.alum.nota1}"/>
+                                            <label for="txtN1">Nota 3°</label>
+                                        </div>
+                                        <div class="input-field col s12 m6">
+                                            <p:inputText id="txtN2" type="number" value="#{alumnosController.alum.nota2}"/>
+                                            <label for="txtN2">Nota 4°</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 m6">
+                                            <p:inputText id="txtN3" type="number" value="#{alumnosController.alum.nota3}"/>
+                                            <label for="txtN3">Nota 5°</label>
+                                        </div>
+                                        <div class="input-field col s12 m6">
+                                            <p:inputText id="txtNvg" type="number" value="#{alumnosController.alum.nota4}"/>
+                                            <label for="txtNvg">Nota VG</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s12 m6">
+                                            <label for="cbCarrera">Carrera</label>
+                                            <p:selectOneMenu id="cbCarrera" value="#{alumnosController.alum.cod_car}" style="width: 100%">
+                                                <f:selectItem itemLabel="Análisis de Sistemas" itemValue="1"/>
+                                                <f:selectItem itemLabel="Producción Agraria" itemValue="2"/>
+                                            </p:selectOneMenu>
+                                        </div>
+                                        <div class="col s12 m6">
+                                            <label for="cbNivel">Nivel</label>
+                                            <p:selectOneMenu id="cbNivel" value="#{alumnosController.alum.eco_est}" style="width: 100%">
+                                                <f:selectItem itemLabel="Pobre Extremo" itemValue="1"/>
+                                                <f:selectItem itemLabel="Pobre" itemValue="2"/>
+                                                <f:selectItem itemLabel="No Pobre" itemValue="3"/>
+                                                <f:selectItem itemLabel="SF" itemValue="4"/>
+                                            </p:selectOneMenu>
+                                        </div>
+                                    </div>
+
+                                    <p:commandButton value="Registrar" actionListener="#{alumnosController.registrarAlumno()}" update="tblAlumnos fcAcColegios form"/>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <p:dataTable 
+                        id="tblAlumnos" 
+                        filteredValue="#{alumnosController.lstActivo2}"
+                        value="#{alumnosController.lstActivo}" 
+                        var="alumnos"
+                        scrollable="true"
+                        scrollHeight="270"
+                        rowKey="#{alumnos.CODIGO}"
+                        selection="#{alumnosController.selected}"
+                        selectionMode="single">
+
+                        <f:facet name="header">
+                            <p:outputLabel value="Lista de Estudiantes" style="color: black"/>
+                            <p:commandButton value="Actualizar" actionListener="#{alumnosController.listarAlumnosActivo()}" update="tblAlumnos"/>
+                        </f:facet>
+                        <p:column style="width:50px">
+                            <p:rowToggler />
+                        </p:column>
+                        <p:column headerText="DNI" filterBy="#{alumnos.DNI}" style="width:150px" filterMatchMode="contains">
+                            <p:outputLabel value="#{alumnos.DNI}" style="color: #000000"/>
+                        </p:column>
+                        <p:column headerText="NOMBRES Y APELLIDOS" filterBy="#{alumnos.NOMBRES}" filterMatchMode="contains">
+                            <p:outputLabel value="#{alumnos.NOMBRES}" style="color: #000000"/>
+                        </p:column>
+                        <p:column headerText="COLEGIO" filterBy="#{alumnos.COLEGIO}" filterMatchMode="contains"> 
+                            <p:outputLabel value="#{alumnos.COLEGIO}" style="color: #000000"/>
+                        </p:column>
+                        <p:column headerText="DISTRITO" filterBy="#{alumnos.DISTRITO}" filterMatchMode="contains">
+                            <p:outputLabel value="#{alumnos.DISTRITO}" style="color: #000000"/>
+                        </p:column>
+                        <p:rowExpansion>
+
+                            <div class="row">
+                                <div class="col m3">
+                                    <h:outputText value="Edad"/><br/>
+                                    <p:outputLabel value="#{alumnos.EDAD} (#{alumnos.NACIMIENT0})"/>
+                                </div>
+                                <div class="col m3">
+                                    <h:outputText value="Direccion"/><br/>
+                                    <p:outputLabel value="#{alumnos.DIRECCION}" />
+                                </div>
+                                <div class="col m3">
+                                    <h:outputText value="Correo"/><br/>
+                                    <p:outputLabel value="#{alumnos.CORREO}"/>
+                                </div>
+                                <div class="col m3">
+                                    <h:outputText value="Celular"/><br/>
+                                    <p:outputLabel value="#{alumnos.CELULAR}"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col m3">
+                                    <h:outputText value="Promedio"/><br/>
+                                    <p:outputLabel value="#{alumnos.PROMEDIO}"/>
+                                </div>
+                                <div class="col m3">
+                                    <h:outputText value="Nota VG"/><br/>
+                                    <p:outputLabel value="#{alumnos.VG}"/>
+                                </div>
+                                <div class="col m3">
+                                    <h:outputText value="NSE"/><br/>
+                                    <p:outputLabel value="#{alumnos.ECONOMIA}" />
+                                </div>
+                                <div class="col m3">
+                                    <h:outputText value="Carrera"/><br/>
+                                    <p:outputLabel value="#{alumnos.CARRERA}"/>
+                                </div>
+                            </div>
+                        </p:rowExpansion>
+                    </p:dataTable>
+
+                    <p:contextMenu for="tblAlumnos">
+                        <p:menuitem value="Editar"
+                                    icon="ui-icon-pencil"
+                                    actionListener="#{alumnosController.jalarDataAlumnos()}"
+                                    oncomplete="PF('editarAlumnos').show()"
+                                    update=":editform"/>
+                    </p:contextMenu>
+                </h:form>
+
+                <ui:include src="editar/EditarAlumnos.xhtml" />
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

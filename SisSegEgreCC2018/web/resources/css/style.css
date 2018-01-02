@@ -1,0 +1,79 @@
+/*Ocultar el sidebar*/
+@media screen and (max-width: 1000px){
+    .ocultar {
+        display: none;
+    } 
+}
+
+/*Ocultar las flechas de los spinner o input del tipo number*/
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+/*Autocomplete primefaces css*/
+.ui-autocomplete {
+    width: 100%;
+}
+.ui-autocomplete .ui-autocomplete-dropdown {
+    position: absolute;
+    height: 70%;
+    width: 2.4em;
+    right: auto;
+}
+
+/*Calendar primefaces css*/
+.ui-datepicker .ui-datepicker-title select {
+    font-size: 0.9em;
+    margin: 1px 0;
+    display: -webkit-inline-box;
+}
+
+/* label focus color */
+.input-field input[type=text]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
+    color: #4285F4 !important;
+}
+
+/* label underline focus color */
+.input-field input[type=text]:focus, .materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #4285F4 !important;
+    box-shadow: 0 1px 0 0 #4285F4 !important;
+}
+
+/*Quitar el borde del legend en el chart de primefaces*/
+table.jqplot-table-legend, table.jqplot-cursor-legend {
+    background-color: rgba(255,255,255,0.6);
+    border: none;
+    font-size: 1em;
+}
+
+/*Contenedor*/
+
+
+/*#MainContainer {
+	margin:auto;
+	background-color:#ececec;
+	width:610px;
+	height:100%;
+	position:relative;
+	top:0px;
+	bottom:0px;
+}
+
+@media only screen and (min-width: 601px) {
+  #MainContainer {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 993px) {
+  #MainContainer {
+    width: 50%;
+  }
+}*/

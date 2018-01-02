@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>   
+        <link rel="icon" type="image/png" sizes="16x16" href="resources/img/hat.png"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <link href="resources/css/materialize.css" rel="stylesheet" type="text/css"/>
+        <link href="resources/css/template.css" rel="stylesheet" type="text/css"/>
+        <link href="resources/css/style.css" rel="stylesheet" type="text/css"/>
+        <f:event type="preRenderView" listener="#{userController.sessionPublic()}"/>
+        <title>Formulario</title>
+    </h:head>
+    <h:body>
+        <h:form id="formulario">
+            <p:growl id="msg" autoUpdate="true" showDetail="true"/>
+            <div class="navbar-fixed">
+                <nav>
+                    <div class="nav-wrapper blue">
+                        <ul>
+                            <li><a href="#!" class="title" style="font-size: 1.8rem">Registro</a></li>
+                        </ul>
+                        <ul class="right">
+                            <li>
+                                <!--<i class="material-icons left">person</i>-->
+                                <a href="faces/login.xhtml" class="waves-effect waves-light btn white black-text">Iniciar Sesión</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m12">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">Datos del Colegio</span>
+                                <div class="row">
+                                    <div class="col s12 m6">
+                                        <p:autoComplete dropdown="true" maxResults="10"
+                                                        placeholder="Nombre del colegio"
+                                                        value="#{alumnosController.alum.cod_col}" 
+                                                        completeMethod="#{alumnosController.completeTextCol}"
+                                                        style="width: 90%" id="autocompleteColegios" maxlength="15" required="true" requiredMessage="Ingresa tu colegio."/>
+                                        <p:focus id="fcAcColegios" context="autocompleteColegios"/>
+                                    </div>
+                                    <div class="col s12 m6">
+                                        <label for="cbCarrera">Carrera</label>
+                                        <p:selectOneMenu id="cbCarrera" value="#{alumnosController.alum.cod_car}" style="width: 100%" required="true" requiredMessage="Elige una carrera">
+                                            <f:selectItem itemLabel="Análisis de Sistemas" itemValue="1"/>
+                                            <f:selectItem itemLabel="Producción Agraria" itemValue="2"/>
+                                        </p:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12 m4">
+                                        <p:inputText id="txtPromo" value="#{alumnosController.alum.promo_est}" maxlength="4"/>
+                                        <label for="txtPromo">Promoción</label>
+                                    </div>
+                                    <div class="input-field col s12 m4">
+                                        <p:inputText id="txtGrado" value="#{alumnosController.alum.year_est}" maxlength="1"/>
+                                        <label for="txtGrado">Grado</label>
+                                    </div>
+                                    <div class="input-field col s12 m4">
+                                        <p:inputText id="txtSec" value="#{alumnosController.alum.sec_est}" style="text-transform: uppercase" maxlength="10"/>
+                                        <label for="txtSec">Sección</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m12">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">Datos del Alumno</span>
+                                <div class="row">
+                                    <div class="input-field col s12 m2">
+                                        <p:inputMask mask="99999999" id="txtDni" value="#{alumnosController.alum.dni_est}"/>
+                                        <label for="txtDni">DNI</label>
+                                    </div>
+                                    <div class="input-field col s12 m4">
+                                        <p:inputText id="txtNom" value="#{alumnosController.alum.nom_est}" style="text-transform: capitalize" required="true" requiredMessage="Ingresa tu nombre."/>
+                                        <label for="txtNom">Nombres</label>
+                                    </div>
+                                    <div class="input-field col s12 m6">
+                                        <p:inputText id="txtApe" value="#{alumnosController.alum.ape_est}" style="text-transform: uppercase" required="true" requiredMessage="Ingresa tu apellido."/>
+                                        <label for="txtApe">Apellidos</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12 m5">
+                                        <p:inputText id="txtDir" value="#{alumnosController.alum.direc_est}" style="text-transform: capitalize"/>
+                                        <label for="txtDir">Dirección</label>
+                                    </div>
+                                    <div class="input-field col s12 m5">
+                                        <p:inputText id="txtRef" value="#{alumnosController.alum.ref_est}" style="text-transform: lowercase"/>
+                                        <label for="txtRef">Referencia</label>
+                                    </div>
+                                    <div class="input-field col s12 m2">
+                                        <p:inputMask mask="999999999" id="txtCel" value="#{alumnosController.alum.cel_est}"/>
+                                        <label for="txtCel">Celular</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12 m3">
+                                        <p:calendar  navigator="true" placeholder="Fec. Nac." value="#{alumnosController.alum.fecnac_est}" mask="true"/>
+                                    </div>
+                                    <div class="input-field col s12 m4">
+                                        <p:inputText id="txtCorreo" value="#{alumnosController.alum.correo_est}"/>
+                                        <label for="txtCorreo">Email</label>
+                                    </div>
+                                    <div class="input-field col s12 m5">
+                                        <p:autoComplete dropdown="true" maxResults="16" 
+                                                        placeholder="Disrito" value="#{alumnosController.alum.ubigeo_est}"
+                                                        completeMethod="#{alumnosController.completeTextUbi}"
+                                                        style="width: 90%" maxlength="15" required="true" requiredMessage="Ingresa tu distrito."/>
+                                    </div>
+                                </div>
+                                <p:commandButton value="Registrar" actionListener="#{alumnosController.registrarAlumno()}" style="width: 100%" update="formulario"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+
+        <p:dialog widgetVar="jquery"></p:dialog>
+        <script src="resources/js/materialize.js" type="text/javascript"></script>
+        <script src="resources/js/sidebar.js" type="text/javascript"></script>
+        <script src="resources/js/jsfcrud.js" type="text/javascript"></script>
+    </h:body>
+</html>
+

@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../template/TemplateOne.xhtml">
+
+            <ui:define name="title">Encuestas</ui:define>
+
+            <ui:define name="menu4">
+                <li class="active"><a href="#"><i class="material-icons blue-text text-darken-1">insert_drive_file</i>Encuesta</a></li>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="Form">
+                    <div class="row">
+                        <div class="col s12 m6 offset-m3" >
+                            <p:autoComplete dropdown="true" maxResults="10" value="#{encuestaController.al.codigo}" 
+                                            completeMethod="#{encuestaController.completeTextCol}" style="width: 100%"
+                                            placeholder="Nombre del Alumno"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m12">
+                            <h5>¿Cuál es la profesión u oficio que desarrolla tu padre?</h5>
+                            <p:selectManyCheckbox value="#{encuestaController.al.pregunta1}" >
+                                <f:selectItem itemLabel="Administrador" itemValue="Administrador" />
+                                <f:selectItem itemLabel="Agricultor" itemValue="Agricultor" />
+                                <f:selectItem itemLabel="Artesano" itemValue="Artesano" />
+                                <f:selectItem itemLabel="Comerciante" itemValue="Comerciante" />
+                                <f:selectItem itemLabel="Ingeniero" itemValue="Ingeniero" />
+                                <f:selectItem itemLabel="Médico" itemValue="Medico" />
+                                <f:selectItem itemLabel="Militar/Policía" itemValue="Militar/Policia" />
+                                <f:selectItem itemLabel="Oficinista" itemValue="Oficinista" />
+                                <f:selectItem itemLabel="Profesor" itemValue="Profesor" />
+                                <f:selectItem itemLabel="Veterinario" itemValue="Veterinario" />
+                            </p:selectManyCheckbox>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m12">
+                            <h5>¿Ya has definido donde vas a estudiar?</h5>
+                            <p:selectManyCheckbox  value="#{encuestaController.al.pregunta2}">
+                                <f:selectItem itemLabel="Chincha" itemValue="Chincha" />
+                                <f:selectItem itemLabel="Pisco" itemValue="Pisco" />
+                                <f:selectItem itemLabel="Ica" itemValue="Ica" />
+                                <f:selectItem itemLabel="Lima" itemValue="Lima" />
+                                <f:selectItem itemLabel="No sabe" itemValue="No sabe" />
+                            </p:selectManyCheckbox>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m12">
+                            <h5>¿Opción 1 actividad favorita,opción 2 segunda actividad favorita?</h5>
+                            <p:selectManyCheckbox value="#{encuestaController.al.pregunta3}">
+                                <f:selectItem itemLabel="Administración" itemValue="Administracion" />
+                                <f:selectItem itemLabel="Agricultura" itemValue="Agricultura" />
+                                <f:selectItem itemLabel="Comercio" itemValue="Comercio" />
+                                <f:selectItem itemLabel="Computación" itemValue="Computacion" />
+                                <f:selectItem itemLabel="Derecho" itemValue="Derecho" />
+                                <f:selectItem itemLabel="Industria" itemValue="Industria" />
+                                <f:selectItem itemLabel="Publicidad" itemValue="Publicidad" />
+                                <f:selectItem itemLabel="Ingeniería" itemValue="Ingenieria" />
+                                <f:selectItem itemLabel="Medicina" itemValue="Medicina" />
+                                <f:selectItem itemLabel="Militar" itemValue="Militar" />
+                                <f:selectItem itemLabel="Periodismo" itemValue="Periodismo" />
+                                <f:selectItem itemLabel="Veterinaría" itemValue="Veterinaria" />
+                                <f:selectItem itemLabel="Ganaderia" itemValue="Ganaderia" />
+                                <f:selectItem itemLabel="Policía" itemValue="Policia" />
+                            </p:selectManyCheckbox>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m12">
+                            <h5>¿Tienes algún familiar que se dedica a la agricultura?</h5>
+                            <p:selectManyCheckbox value="#{encuestaController.al.pregunta4}" >
+                                <f:selectItem itemLabel="Padres" itemValue="Padres" />
+                                <f:selectItem itemLabel="Hermanos" itemValue="Hermanos" />
+                                <f:selectItem itemLabel="Tíos" itemValue="Tios" />
+                                <f:selectItem itemLabel="Abuelos" itemValue="Abuelos" />
+                            </p:selectManyCheckbox>
+                        </div>
+                    </div>
+
+
+
+                    <p:commandButton value="Guardar" actionListener="#{encuestaController.preguntasTodas()}" update="data Form"/>
+                    <br>
+
+                    </br>
+
+                    <p:dataTable id="data" value="#{encuestaController.lstActivo}" var="exp" >
+                        <p:column headerText="Nombres" groupRow="true">
+                            <p:outputLabel value="#{exp.nombre} #{exp.apellido}"/>
+                        </p:column>
+                        <p:column headerText="Pregunta">
+                            <p:outputLabel value="#{exp.pregunta}"/>
+                        </p:column>
+                        <p:column headerText="Respuesta">
+                            <p:outputLabel value="#{exp.respuesta}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

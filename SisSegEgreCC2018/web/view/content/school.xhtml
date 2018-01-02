@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../template/TemplateOne.xhtml">
+
+            <ui:define name="title">Colegios</ui:define>
+
+            <ui:define name="menu3">
+                <li class="active"><a href="../content/school.xhtml"><i class="material-icons blue-text text-darken-1">domain</i>Colegios</a></li>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="frm">
+                    <p:growl id="msg" showDetail="true"/>
+                    <div class="row">
+                        <div class="col s12 m12">
+                            <div class="card white">  
+                                <div class="card-content valign-wrapper">
+                                    <div class="card-text">
+                                        <h6>Agregar Colegios</h6>
+                                        <div class="row">
+                                            <div class="input-field col s12 m5">
+                                                <p:inputText type="number" id="txtCodMod" value="#{colegiosController.col.cod_modular}" maxlength="10"/>
+                                                <label for="txtCodMod">Codigo Modular</label>
+                                            </div>
+                                            <div class="input-field col s12 m5">
+                                                <p:inputText id="txtNomCol" value="#{colegiosController.col.nom_colegio}"/>
+                                                <label for="txtNomCol">Nombre del Colegio</label>
+                                            </div>
+                                            <div class="col s12 m2">
+                                                <p:commandButton value="Registrar" actionListener="#{colegiosController.agregarCol()}" update="tblCol"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <p:dataTable id="tblCol"
+                                 value="#{colegiosController.lstColegios}"
+                                 filteredValue="#{colegiosController.lstColegios2}"
+                                 var="col"
+                                 scrollable="true" 
+                                 scrollHeight="500"
+                                 rowKey="#{col.codigomodular}" 
+                                 selection="#{colegiosController.selected}" 
+                                 selectionMode="single" >
+
+                        <f:facet name="header">
+                            <p:outputLabel value="Lista de Colegios"/>
+                            <p:commandButton value="Actualizar" actionListener="#{colegiosController.listarColegiosActivo()}" update="tblCol"/>
+                        </f:facet>
+                        <p:column headerText="Cod. Modular" filterBy="#{col.codigomodular}" filterMatchMode="contains">
+                            <p:outputLabel value="#{col.codigomodular}"/>
+                        </p:column>
+                        <p:column headerText="Nombre" filterBy="#{col.colegio}" filterMatchMode="contains">
+                            <p:outputLabel value="#{col.colegio}"/>
+                        </p:column>
+                    </p:dataTable>
+                    <p:contextMenu for="tblCol">
+                        <p:menuitem value="Editar" 
+                                    oncomplete="PF('editarcolegio').show()" 
+                                    actionListener="#{colegiosController.jalarData()}"
+                                    update=":editform"/>
+                    </p:contextMenu>
+
+                </h:form>
+                <p:dialog id="editdialog"
+                          widgetVar="editarcolegio"
+                          modal="true"
+                          appendTo="@(body)"
+                          header="Actualizar Colegio"
+                          closeOnEscape="true">
+
+                    <h:form id="editform">
+
+                        <p:panelGrid id="panel">
+
+                            <p:outputLabel value="Colegio:"/>
+                            <p:inputText value="#{colegiosController.selected.nom_colegio}"/>
+                            <p:commandButton value="Actualizar"
+                                             icon="ui-icon-check"
+                                             actionListener="#{colegiosController.editar()}"
+                                             oncomplete="handleSubmit(args,'editarcolegio');"
+                                             update="editform :frm:msg :frm:tblCol"/>
+
+                            <p:commandButton value="Cancelar"
+                                             icon="ui-icon-close" 
+                                             onclick="PF('editarcolegio').hide()"
+                                             immediate="true"/>
+                        </p:panelGrid>
+                    </h:form>
+
+                </p:dialog>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

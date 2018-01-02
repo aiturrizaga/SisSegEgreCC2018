@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="editdialog"
+                  widgetVar="editarAlumnos"
+                  modal="true"
+                  appendTo="@(body)"
+                  header="Actualizar Alumnos"
+                  responsive="true"
+                  closeOnEscape="true">
+
+            <h:form id="editform">
+
+                <p:panelGrid id="panel" columns="6">
+
+                    <p:outputLabel value="Nombres"/>
+                    <p:inputText value="#{alumnosController.selected.nom_est}"/>
+                    <p:outputLabel value="Apellidos"/>
+                    <p:inputText value="#{alumnosController.selected.ape_est}"/>
+                    <p:outputLabel value="DNI"/>
+                    <p:inputText value="#{alumnosController.selected.dni_est}"/>
+                    <p:outputLabel value="Nacimiento"/>
+                    <p:calendar value="#{alumnosController.selected.fecnac_est}"/>
+                    <p:outputLabel value="Dirección"/>
+                    <p:inputText value="#{alumnosController.selected.direc_est}"/>
+                    <p:outputLabel value="Referencia"/>
+                    <p:inputText value="#{alumnosController.selected.ref_est}"/>
+                    <p:outputLabel value="Celular"/>
+                    <p:inputText value="#{alumnosController.selected.cel_est}"/>
+                    <p:outputLabel value="Correo"/>
+                    <p:inputText value="#{alumnosController.selected.correo_est}"/>
+                    <p:outputLabel value="Grado"/>
+                    <p:inputText value="#{alumnosController.selected.year_est}"/>
+                    <p:outputLabel value="Sección"/>
+                    <p:inputText value="#{alumnosController.selected.sec_est}"/>
+                    <p:outputLabel value="NOTA_01"/>
+                    <p:inputText value="#{alumnosController.selected.nota1}"/>
+                    <p:outputLabel value="NOTA_02"/>
+                    <p:inputText value="#{alumnosController.selected.nota2}"/>
+                    <p:outputLabel value="NOTA_03"/>
+                    <p:inputText value="#{alumnosController.selected.nota3}"/>
+                    <p:outputLabel value="Colegio"/>
+                    <p:autoComplete dropdown="true" maxResults="10"
+                                    placeholder="Nombre del colegio"
+                                    value="#{alumnosController.selected.cod_col}" 
+                                    completeMethod="#{alumnosController.completeTextCol}"
+                                    style="width: 90%"/>
+                    <p:outputLabel value="Ubigeo"/>
+                    <p:autoComplete dropdown="true" maxResults="16" 
+                                    placeholder="Disrito" value="#{alumnosController.selected.ubigeo_est}"
+                                    completeMethod="#{alumnosController.completeTextUbi}"
+                                    style="width: 90%"/>
+                    <p:outputLabel value="Promoción"/>
+                    <p:inputText value="#{alumnosController.selected.promo_est}"/>
+
+                    <p:outputLabel value="Economía"/>
+                    <p:selectOneMenu id="cbNivel" value="#{alumnosController.selected.eco_est}" style="width: 100%">
+                        <f:selectItem itemLabel="Pobre Extremo" itemValue="1"/>
+                        <f:selectItem itemLabel="Pobre" itemValue="2"/>
+                        <f:selectItem itemLabel="No Pobre" itemValue="3"/>
+                        <f:selectItem itemLabel="SF" itemValue="4"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="NOTA_04"/>
+                    <p:inputText value="#{alumnosController.selected.nota4}"/>
+                    <p:outputLabel value="Carrera"/>
+                    <p:selectOneMenu id="cbCarrera" value="#{alumnosController.selected.cod_car}" style="width: 100%">
+                                        <f:selectItem itemLabel="Análisis de Sistemas" itemValue="1"/>
+                                        <f:selectItem itemLabel="Producción Agraria" itemValue="2"/>
+                                    </p:selectOneMenu>
+
+                    <p:commandButton value="Actualizar"
+                                     icon="ui-icon-check"
+                                     actionListener="#{alumnosController.editarAlumnos()}"
+                                     oncomplete="handleSubmit(args,'editarAlumnos');"
+                                     update="editform :form:msg :form:tblAlumnos"/>
+
+                    <p:commandButton value="Cancelar"
+                                     icon="ui-icon-close" 
+                                     onclick="PF('editarAlumnos').hide()"
+                                     immediate="true"/>
+
+                </p:panelGrid>
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+</html>
