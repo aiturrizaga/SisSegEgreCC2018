@@ -160,8 +160,11 @@ public class AlumnosController implements Serializable {
             alum.setCodCarTraz(selected.getCod_car());
             alum.setYearTraz(formateador.format(ahora));
             dao.asignarAlumnos(alum);
+            dao.cambioEstadoAsignado(alum);
+            listarAlumnosActivo();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "ASIGNADO", "Correctamente"));
         } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "ERROR", "No se pudo asignar"));
             throw e;
         }
     }

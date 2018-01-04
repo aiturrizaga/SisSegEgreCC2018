@@ -18,7 +18,7 @@ public class AlumnosDao extends Dao {
     public void registrarAlumno(Alumnos al) throws Exception {
         this.Conexion();
         try {
-            String sql = "Insert into PERSONATEMP (NOM_EST,APE_EST,DNI_EST,FEC_NAC_EST,DIREC_EST,REF_EST,CEL_EST,CORREO_EST,YEAR_DETCOL,SEC_DETCOL,COD_COL,UBIGEO_EST,COD_CAR,PROMO_EST,SEXO_EST,ECON_EST,NOTE1_DETCOL,NOTE2_DETCOL,NOTE3_DETCOL,NOTE4) values (INITCAP(?),UPPER(?),?,to_date(?,'dd/MM/yyyy'),INITCAP(?),?,?,?,?,UPPER(?),?,?,?,?,?,?,?,?,?,?)";
+            String sql = "Insert into PERSONATEMP (NOM_EST,APE_EST,DNI_EST,FEC_NAC_EST,DIREC_EST,REF_EST,CEL_EST,CORREO_EST,YEAR_DETCOL,SEC_DETCOL,COD_COL,UBIGEO_EST,COD_CAR,PROMO_EST,SEXO_EST,ECON_EST,NOTE1_DETCOL,NOTE2_DETCOL,NOTE3_DETCOL,NOTE4,EST_EST) values (INITCAP(?),UPPER(?),?,to_date(?,'dd/MM/yyyy'),INITCAP(?),?,?,?,?,UPPER(?),?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = this.getCn().prepareStatement(sql);
             ps.setString(1, al.getNom_est());
             ps.setString(2, al.getApe_est());
@@ -40,6 +40,7 @@ public class AlumnosDao extends Dao {
             ps.setString(18, al.getNota2());
             ps.setString(19, al.getNota3());
             ps.setString(20, al.getNota4());
+            ps.setString(21, "ALU");
             ps.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -445,6 +446,18 @@ public class AlumnosDao extends Dao {
             ps.setString(3, alum.getSecTraz());
             ps.setString(4, alum.getModingTraz());
             ps.setString(5, alum.getYearTraz());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+    
+    public void cambioEstadoAsignado(Alumnos alum) throws Exception{
+        try {
+            this.Conexion();
+            String sql = "UPDATE PERSONATEMP SET EST_EST = 'EST' WHERE COD_EST = ?";
+            PreparedStatement ps = this.getCn().prepareStatement(sql);
+            ps.setString(1, alum.getCodPerTraz());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw e;
