@@ -157,6 +157,7 @@ public class AlumnosController implements Serializable {
         try {
             dao = new AlumnosDao();
             alum.setCodPerTraz(selected.getCod_est());
+            alum.setCodCarTraz(selected.getCod_car());
             alum.setYearTraz(formateador.format(ahora));
             dao.asignarAlumnos(alum);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "ASIGNADO", "Correctamente"));
