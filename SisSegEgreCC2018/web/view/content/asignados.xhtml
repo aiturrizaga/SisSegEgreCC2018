@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -11,10 +13,30 @@
             <ui:define name="submenu1">
                 <li class="active"><a href="../content/asignados.xhtml"><i class="material-icons blue-text text-darken-1">assignment_ind</i>Asignados</a></li>
             </ui:define>
-            
+
             <ui:define name="content">
                 <h:form>
-                    aqui el codigo.
+                    <p:commandButton value="Actualizar" actionListener="#{trazabilidadController.mostrarTrazabilidad()}" update="trazaTable"/>
+                    <p:dataTable value="#{trazabilidadController.lstTrazabildad}" var="traz" widgetVar="trazTable" id="trazaTable"> 
+                        <p:column headerText="NOMBRES" filterBy="#{traz.NOMBRES}" filterMatchMode="contains">
+                            <p:outputLabel value="#{traz.NOMBRES}"/>
+                        </p:column>                       
+                        <p:column headerText="MODO-INGRESO" filterBy="#{traz.MODING}" filterMatchMode="contains">
+                            <p:outputLabel value="#{traz.MODING}"/>
+                        </p:column>                     
+                        <p:column headerText="DNI" filterBy="#{traz.DNI}" filterMatchMode="contains">
+                            <p:outputLabel value="#{traz.DNI}"/>
+                        </p:column>
+                        <p:column headerText="CARRERA" filterBy="#{traz.CARRERA}" filterMatchMode="contains">
+                            <p:outputLabel value="#{traz.CARRERA}"/>
+                        </p:column>
+                        <p:column headerText="SECCION" filterBy="#{traz.SECCION}" filterMatchMode="contains">
+                            <p:outputLabel value="#{traz.SECCION}"/>
+                        </p:column>
+                        <p:column headerText="AÑO" filterBy="#{traz.AÑO}" filterMatchMode="contains">
+                            <p:outputLabel value="#{traz.AÑO}"/>
+                        </p:column>
+                    </p:dataTable>
                 </h:form>
             </ui:define>
 
