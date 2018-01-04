@@ -50,8 +50,7 @@ public class AlumnosController implements Serializable {
         } catch (Exception e) {
         }
     }
-    
-    
+
     public void listarTopColegios() throws Exception {
         AlumnosDao dao;
         try {
@@ -62,6 +61,7 @@ public class AlumnosController implements Serializable {
         }
 
     }
+
     public void registrarAlumno() throws Exception {
         AlumnosDao dao;
         try {
@@ -78,10 +78,11 @@ public class AlumnosController implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "INGRESADO", alum.getApe_est() + " " + alum.getNom_est() + " agregado."));
             limpiar();
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR","Corriga los datos."));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Corriga los datos."));
             throw e;
         }
     }
+
     public void listarAlumnosActivo() throws Exception {
         AlumnosDao dao;
         try {
@@ -91,6 +92,7 @@ public class AlumnosController implements Serializable {
             throw e;
         }
     }
+
     public void listarAlumnosAll() throws Exception {
         AlumnosDao dao;
         try {
@@ -100,6 +102,7 @@ public class AlumnosController implements Serializable {
             throw e;
         }
     }
+
     public void countPersonaTemp() throws SQLException {
         AlumnosDao dao;
         try {
@@ -109,6 +112,7 @@ public class AlumnosController implements Serializable {
             throw e;
         }
     }
+
     public void jalarData() throws Exception {
         AlumnosDao dao;
         try {
@@ -118,6 +122,7 @@ public class AlumnosController implements Serializable {
             throw e;
         }
     }
+
     public void jalarDataAlumnos() throws Exception {
         AlumnosDao dao;
         try {
@@ -127,6 +132,7 @@ public class AlumnosController implements Serializable {
             throw e;
         }
     }
+
     public void editarAlumnos() throws Exception {
         AlumnosDao dao;
         try {
@@ -145,14 +151,30 @@ public class AlumnosController implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "ERROR", "Corregir los datos"));
         }
     }
+    
+    public void asignarAlumnos() throws Exception{
+        AlumnosDao dao;
+        try {
+            dao = new AlumnosDao();
+            alum.setCodPerTraz(selected.getCod_est());
+            alum.setYearTraz(formateador.format(ahora));
+            dao.asignarAlumnos(alum);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "ASIGNADO", "Correctamente"));
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
     public List<String> completeTextCol(String query) throws SQLException {
         AlumnosDao dao = new AlumnosDao();
         return dao.queryAutoCompleteCol(query);
     }
+
     public List<String> completeTextUbi(String query) throws SQLException {
         AlumnosDao dao = new AlumnosDao();
         return dao.queryAutoCompleteUbi(query);
     }
+
     public void listaCantCarrera() throws Exception {
         AlumnosDao dao;
         try {
@@ -163,6 +185,7 @@ public class AlumnosController implements Serializable {
             throw e;
         }
     }
+
     public void listaCantDistritos() throws Exception {
         AlumnosDao dao;
         try {
@@ -173,6 +196,7 @@ public class AlumnosController implements Serializable {
             throw e;
         }
     }
+
     public void listaCantDistCañete() throws SQLException {
         AlumnosDao dao;
         try {
@@ -183,6 +207,7 @@ public class AlumnosController implements Serializable {
             throw e;
         }
     }
+
     public void graficar(List<Alumnos> lista) {
         pieModel = new PieChartModel();
         for (Alumnos alu : lstCantCarreras) {
@@ -193,6 +218,7 @@ public class AlumnosController implements Serializable {
         pieModel.setShowDataLabels(true);
         pieModel.setDiameter(230);
     }
+
     public void graficarDistritos(List<Alumnos> lista) {
         pieModel1 = new PieChartModel();
         for (Alumnos alu : lstCantDist) {
@@ -203,6 +229,7 @@ public class AlumnosController implements Serializable {
         pieModel1.setShowDataLabels(true);
         pieModel1.setDiameter(230);
     }
+
     public void graficarDistritoCañete(List<Alumnos> lista) {
         pieModel2 = new PieChartModel();
         for (Alumnos alu : lstCantDistCañete) {
@@ -213,6 +240,7 @@ public class AlumnosController implements Serializable {
         pieModel2.setShowDataLabels(true);
         pieModel2.setDiameter(230);
     }
+
     public void limpiar() {
         alum.setCod_col(null);
         alum.setYear_est(null);
@@ -231,7 +259,7 @@ public class AlumnosController implements Serializable {
         alum.setNota3(null);
         alum.setNota4(null);
     }
-    
+
     public Alumnos getCodtraza() {
         return codtraza;
     }
@@ -239,7 +267,7 @@ public class AlumnosController implements Serializable {
     public void setCodtraza(Alumnos codtraza) {
         this.codtraza = codtraza;
     }
-    
+
     public List<Alumnos> getLstTrazabilidad() {
         return lstTrazabilidad;
     }
@@ -247,8 +275,7 @@ public class AlumnosController implements Serializable {
     public void setLstTrazabilidad(List<Alumnos> lstTrazabilidad) {
         this.lstTrazabilidad = lstTrazabilidad;
     }
-    
-    
+
     public List<Alumnos> getLstTopColegios() {
         return lstTopColegios;
     }

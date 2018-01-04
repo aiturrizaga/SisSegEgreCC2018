@@ -23,21 +23,21 @@
                     <p:outputLabel value="#{alumnosController.selected.nom_est}"/>
 
                     <p:outputLabel value="Carrera"/>
-                    <p:selectOneMenu id="cbCarrera" value="#{alumnosController.selected.cod_car}" style="width: 100%">
+                    <p:selectOneMenu id="cbCarrera" value="#{alumnosController.alum.codCarTraz}" style="width: 100%">
                         <f:selectItem itemLabel="Seleccione" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Análisis de Sistemas" itemValue="1"/>
                         <f:selectItem itemLabel="Producción Agraria" itemValue="2"/>
                     </p:selectOneMenu>
                     
                     <p:outputLabel value="Sección"/>
-                    <p:selectOneMenu id="cbSeccion" value="#{alumnosController.selected.cod_car}" style="width: 100%">
+                    <p:selectOneMenu id="cbSeccion" value="#{alumnosController.alum.secTraz}" style="width: 100%">
                         <f:selectItem itemLabel="A" itemValue="A"/>
                         <f:selectItem itemLabel="B" itemValue="B"/>
                         <f:selectItem itemLabel="C" itemValue="C"/>
                     </p:selectOneMenu>
                     
                     <p:outputLabel value="Ingreso"/>
-                    <p:selectOneMenu id="cbIngreso" value="#{alumnosController.selected.cod_car}" style="width: 100%">
+                    <p:selectOneMenu id="cbIngreso" value="#{alumnosController.alum.modingTraz}" style="width: 100%">
                         <f:selectItem itemLabel="Seleccione" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Ciclo Cero" itemValue="CC0"/>
                         <f:selectItem itemLabel="Beca 18" itemValue="B18"/>
@@ -47,7 +47,7 @@
 
                     <p:commandButton value="Actualizar"
                                      icon="ui-icon-check"
-                                     actionListener="#{alumnosController.editarAlumnos()}"
+                                     actionListener="#{alumnosController.asignarAlumnos()}"
                                      oncomplete="handleSubmit(args,'asignarDialog');"
                                      update="asignaform :form:msg :form:tblAlumnos"/>
 

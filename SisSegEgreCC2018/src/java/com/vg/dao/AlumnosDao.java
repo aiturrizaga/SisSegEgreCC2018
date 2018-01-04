@@ -435,5 +435,20 @@ public class AlumnosDao extends Dao {
         return lista;
     }
 
+    public void asignarAlumnos(Alumnos alum) throws Exception{
+        try {
+            this.Conexion();
+            String sql = "INSERT INTO TRAZABILIDAD(COD_EST,COD_CAR,SECCION,MOD_ING,ANO_TRAZ) VALUES (?,?,?,?,?)";
+            PreparedStatement ps = this.getCn().prepareStatement(sql);
+            ps.setString(1, alum.getCodPerTraz());
+            ps.setString(2, alum.getCodCarTraz());
+            ps.setString(3, alum.getSecTraz());
+            ps.setString(4, alum.getModingTraz());
+            ps.setString(5, alum.getYearTraz());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
     
 }

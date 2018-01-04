@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Email;
 public class Alumnos {
 
     private String fechaActual;
-    private String NOMBRE,CANTIDAD;
+    private String NOMBRE, CANTIDAD;
     private String cod_est;
     private String cod_col;
     private String cod_car;
@@ -30,21 +30,61 @@ public class Alumnos {
     private String nota3;
     private String nota4;
     private String sexo = "M";
-    
-    private int cantCar,cantProv,cantProvCañete;
-    private String nomCar,nomProv,nomProvCañete;
-    
+
+    private String codPerTraz;
+    private String codCarTraz;
+    private String secTraz;
+    private String modingTraz;
+    private String yearTraz;
+
+    private int cantCar, cantProv, cantProvCañete;
+    private String nomCar, nomProv, nomProvCañete;
+
     private String CODIGO, DNI, NOMBRES, COLEGIO, DISTRITO, PROMEDIO, ECONOMIA, EDAD, VG, DIRECCION, CORREO, CELULAR, CARRERA;
 
     private Date NACIMIENT0;
-    
+
     private String countPersonaTemp;
-    
 
-    
+    public String getCodPerTraz() {
+        return codPerTraz;
+    }
 
-    
-    
+    public void setCodPerTraz(String codPerTraz) {
+        this.codPerTraz = codPerTraz;
+    }
+
+    public String getCodCarTraz() {
+        return codCarTraz;
+    }
+
+    public void setCodCarTraz(String codCarTraz) {
+        this.codCarTraz = codCarTraz;
+    }
+
+    public String getSecTraz() {
+        return secTraz;
+    }
+
+    public void setSecTraz(String secTraz) {
+        this.secTraz = secTraz;
+    }
+
+    public String getModingTraz() {
+        return modingTraz;
+    }
+
+    public void setModingTraz(String modingTraz) {
+        this.modingTraz = modingTraz;
+    }
+
+    public String getYearTraz() {
+        return yearTraz;
+    }
+
+    public void setYearTraz(String yearTraz) {
+        this.yearTraz = yearTraz;
+    }
 
     public String getNOMBRE() {
         return NOMBRE;
@@ -101,8 +141,7 @@ public class Alumnos {
     public void setNomProvCañete(String nomProvCañete) {
         this.nomProvCañete = nomProvCañete;
     }
-     
-    
+
     public String getCountPersonaTemp() {
         return countPersonaTemp;
     }
@@ -126,7 +165,6 @@ public class Alumnos {
     public void setNomCar(String nomCar) {
         this.nomCar = nomCar;
     }
-
 
     public String getCARRERA() {
         return CARRERA;
