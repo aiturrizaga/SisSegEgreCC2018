@@ -70,9 +70,10 @@
                     <p:inputText value="#{alumnosController.selected.nota4}"/>
                     <p:outputLabel value="Carrera"/>
                     <p:selectOneMenu id="cbCarrera" value="#{alumnosController.selected.cod_car}" style="width: 100%">
-                                        <f:selectItem itemLabel="Análisis de Sistemas" itemValue="1"/>
-                                        <f:selectItem itemLabel="Producción Agraria" itemValue="2"/>
-                                    </p:selectOneMenu>
+                        <f:selectItem itemLabel="Seleccione" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Análisis de Sistemas" itemValue="1"/>
+                        <f:selectItem itemLabel="Producción Agraria" itemValue="2"/>
+                    </p:selectOneMenu>
 
                     <p:commandButton value="Actualizar"
                                      icon="ui-icon-check"

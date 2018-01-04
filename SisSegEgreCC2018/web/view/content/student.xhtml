@@ -235,10 +235,16 @@
                                     actionListener="#{alumnosController.jalarDataAlumnos()}"
                                     oncomplete="PF('editarAlumnos').show()"
                                     update=":editform"/>
+                        
+                        <p:menuitem value="Asignar"
+                                    icon="ui-icon-transferthick-e-w"
+                                    oncomplete="PF('asignarDialog').show()"
+                                    update=":asignaform"/>
                     </p:contextMenu>
                 </h:form>
 
                 <ui:include src="editar/EditarAlumnos.xhtml" />
+                <ui:include src="editar/AsignarAlumnos.xhtml" />
 
             </ui:define>
 
