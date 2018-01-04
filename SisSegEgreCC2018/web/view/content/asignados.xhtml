@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../template/TemplateOne.xhtml">
+
+            <ui:define name="submenu1">
+                <li class="active"><a href="../content/asignados.xhtml"><i class="material-icons blue-text text-darken-1">assignment_ind</i>Asignados</a></li>
+            </ui:define>
+            
+            <ui:define name="content">
+                <h:form>
+                    aqui el codigo.
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
