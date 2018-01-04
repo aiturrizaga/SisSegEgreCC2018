@@ -7,11 +7,13 @@ import java.sql.SQLException;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AlumnosDao extends Dao {
 
     Format formatter = new SimpleDateFormat("dd/MM/yyyy");
+    Date ahora = new Date();
 
     public void registrarAlumno(Alumnos al) throws Exception {
         this.Conexion();
@@ -242,7 +244,6 @@ public class AlumnosDao extends Dao {
         }
     }
 
-    
     public Alumnos jalarDataAlumnos(String cod) throws SQLException {
         ResultSet rs;
         try {
@@ -279,7 +280,7 @@ public class AlumnosDao extends Dao {
             throw e;
         }
     }
-    
+
     public void editarAlumnos(Alumnos alum) throws Exception {
         try {
             this.Conexion();
@@ -311,7 +312,7 @@ public class AlumnosDao extends Dao {
             throw e;
         }
     }
-    
+
     public String leerAlumons(String a) throws Exception {
         this.Conexion();
         ResultSet rs;
@@ -330,7 +331,7 @@ public class AlumnosDao extends Dao {
             this.Cerrar();
         }
     }
-    
+
     public List<Alumnos> listarCantCarreras() throws Exception {
         List<Alumnos> lista;
         ResultSet rs;
@@ -352,10 +353,10 @@ public class AlumnosDao extends Dao {
         }
         return lista;
     }
-    
-    public  List<Alumnos> listarCantProvincia() throws SQLException{
-    List<Alumnos> lista;
-    ResultSet rs;
+
+    public List<Alumnos> listarCantProvincia() throws SQLException {
+        List<Alumnos> lista;
+        ResultSet rs;
         try {
             this.Conexion();
             String sql = "SELECT * FROM VW_PROVINCIA";
@@ -363,22 +364,22 @@ public class AlumnosDao extends Dao {
             rs = ps.executeQuery();
             lista = new ArrayList();
             Alumnos emp;
-            while(rs.next()){
-            emp = new Alumnos();
-            emp.setNomProv(rs.getString("PROVINCIA"));
-            emp.setCantProv(rs.getInt("CANTIDAD"));
-            lista.add(emp);
+            while (rs.next()) {
+                emp = new Alumnos();
+                emp.setNomProv(rs.getString("PROVINCIA"));
+                emp.setCantProv(rs.getInt("CANTIDAD"));
+                lista.add(emp);
             }
         } catch (SQLException e) {
-            throw  e;
+            throw e;
         }
-    return lista;
-    
+        return lista;
+
     }
-    
-    public List<Alumnos> listaProvCañete() throws SQLException{
-    List<Alumnos> lista;
-    ResultSet rs;
+
+    public List<Alumnos> listaProvCañete() throws SQLException {
+        List<Alumnos> lista;
+        ResultSet rs;
         try {
             this.Conexion();
             String sql = "SELECT * FROM VW_DISTRITOCAÑETE";
@@ -386,22 +387,19 @@ public class AlumnosDao extends Dao {
             rs = ps.executeQuery();
             lista = new ArrayList();
             Alumnos emp;
-            while(rs.next()){
-            emp = new Alumnos();
-            emp.setNomProvCañete(rs.getString("CAÑETE"));
-            emp.setCantProvCañete(rs.getInt("CANTIDAD"));
-            lista.add(emp);
+            while (rs.next()) {
+                emp = new Alumnos();
+                emp.setNomProvCañete(rs.getString("CAÑETE"));
+                emp.setCantProvCañete(rs.getInt("CANTIDAD"));
+                lista.add(emp);
             }
         } catch (SQLException e) {
             throw e;
         }
-    return lista;
+        return lista;
     }
-    
-    
-    
-    
-    public void countPersonaTemp(Alumnos alum) throws SQLException{
+
+    public void countPersonaTemp(Alumnos alum) throws SQLException {
         ResultSet rs;
         try {
             this.Conexion();
@@ -414,7 +412,7 @@ public class AlumnosDao extends Dao {
             throw e;
         }
     }
-    
+
     public List<Alumnos> topColegios() throws SQLException {
         List<Alumnos> lista;
         ResultSet rs;
@@ -436,4 +434,6 @@ public class AlumnosDao extends Dao {
         }
         return lista;
     }
+
+    
 }

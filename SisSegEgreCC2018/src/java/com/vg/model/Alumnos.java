@@ -39,6 +39,12 @@ public class Alumnos {
     private Date NACIMIENT0;
     
     private String countPersonaTemp;
+    
+
+    
+
+    
+    
 
     public String getNOMBRE() {
         return NOMBRE;
