@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="updateDlg"
+                  widgetVar="updateDialog"
+                  modal="true"
+                  appendTo="@(body)"
+                  header="Actualizar"
+                  responsive="true"
+                  closeOnEscape="true">
+
+            <h:form id="updateform">
+
+                <p:panelGrid id="panel3" columns="2">
+
+                    <p:outputLabel value="Nombres"/>
+                    <p:outputLabel value="#{trazabilidadController.selected.NOMBRES}"/>
+
+                    <p:outputLabel value="Carrera"/>
+                    <p:selectOneMenu id="cCarrera" value="#{trazabilidadController.selected.codCarrera}" style="width: 100%" required="true" requiredMessage="Ingrese la carrera">
+                        <f:selectItem itemLabel="Seleccione" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Análisis de Sistemas" itemValue="1"/>
+                        <f:selectItem itemLabel="Producción Agraria" itemValue="2"/>
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel value="Sección"/>
+                    <p:selectOneMenu id="cSeccion" value="#{trazabilidadController.selected.SECCION}" style="width: 100%">
+                        <f:selectItem itemLabel="A" itemValue="A"/>
+                        <f:selectItem itemLabel="B" itemValue="B"/>
+                        <f:selectItem itemLabel="C" itemValue="C"/>
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel value="Ingreso"/>
+                    <p:selectOneMenu id="cIngreso" value="#{trazabilidadController.selected.modoIngreso}" style="width: 100%" required="true" requiredMessage="Ingrese el modo">
+                        <f:selectItem itemLabel="Seleccione" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Ciclo Cero" itemValue="CC0"/>
+                        <f:selectItem itemLabel="Beca 18" itemValue="B18"/>
+                        <f:selectItem itemLabel="Beca Empresa" itemValue="BEM"/>
+                        <f:selectItem itemLabel="Ordinario" itemValue="ORD"/>
+                    </p:selectOneMenu>
+
+                    <p:commandButton value="Actualizar"
+                                     icon="ui-icon-check"
+                                     actionListener="#{trazabilidadController.updateAlumTraz()}"
+                                     oncomplete="handleSubmit(args,'updateDialog');"/>
+
+                    <p:commandButton value="Cancelar"
+                                     icon="ui-icon-close" 
+                                     onclick="PF('updateDialog').hide()"
+                                     immediate="true"/>
+
+                </p:panelGrid>
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+</html>

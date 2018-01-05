@@ -6,6 +6,8 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +20,11 @@ import javax.faces.context.FacesContext;
 public class TrazabilidadController implements Serializable {
 
     private List<Trazabilidad> lstTrazabildad;
+    private List<Trazabilidad> lstTrazabildad2;
     private Trazabilidad selected;
+
+    Date time = new Date();
+    SimpleDateFormat alltime = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
 
     @PostConstruct
     public void init() {
@@ -50,6 +56,27 @@ public class TrazabilidadController implements Serializable {
         } catch (Exception e) {
             throw e;
         }
+    }
+
+    public void updateAlumTraz() throws Exception {
+        TrazabilidadDao dao;
+        try {
+            dao = new TrazabilidadDao();
+            selected.setTimeActual(alltime.format(time));
+            dao.updateAlumTraz(selected);
+            mostrarTrazabilidad();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "ACTUALIZADO", "Correctamente"));
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public List<Trazabilidad> getLstTrazabildad2() {
+        return lstTrazabildad2;
+    }
+
+    public void setLstTrazabildad2(List<Trazabilidad> lstTrazabildad2) {
+        this.lstTrazabildad2 = lstTrazabildad2;
     }
 
     public List<Trazabilidad> getLstTrazabildad() {

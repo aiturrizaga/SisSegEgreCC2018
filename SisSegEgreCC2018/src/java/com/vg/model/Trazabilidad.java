@@ -3,6 +3,31 @@ package com.vg.model;
 public class Trazabilidad {
 
     private String NOMBRES, DNI, CARRERA, SECCION, MODING, AÑO, CODTRAZ, CODEST;
+    private String CodCarrera, ModoIngreso, TimeActual;
+
+    public String getTimeActual() {
+        return TimeActual;
+    }
+
+    public void setTimeActual(String TimeActual) {
+        this.TimeActual = TimeActual;
+    }
+
+    public String getCodCarrera() {
+        return CodCarrera;
+    }
+
+    public void setCodCarrera(String CodCarrera) {
+        this.CodCarrera = CodCarrera;
+    }
+
+    public String getModoIngreso() {
+        return ModoIngreso;
+    }
+
+    public void setModoIngreso(String ModoIngreso) {
+        this.ModoIngreso = ModoIngreso;
+    }
 
     public String getCODTRAZ() {
         return CODTRAZ;
