@@ -19,22 +19,22 @@
                     <p:commandButton value="Actualizar" actionListener="#{trazabilidadController.mostrarTrazabilidad()}" update="trazaTable"/>
                     <p:dataTable value="#{trazabilidadController.lstTrazabildad}" var="traz" widgetVar="trazTable" id="trazaTable"> 
                         <p:column headerText="NOMBRES" filterBy="#{traz.NOMBRES}" filterMatchMode="contains">
-                            <p:outputLabel value="#{traz.NOMBRES}"/>
+                            <p:outputLabel value="#{traz.NOMBRES}" style="color: #000000"/>
                         </p:column>                       
                         <p:column headerText="MODO-INGRESO" filterBy="#{traz.MODING}" filterMatchMode="contains">
-                            <p:outputLabel value="#{traz.MODING}"/>
+                            <p:outputLabel value="#{traz.MODING}" style="color: #000000"/>
                         </p:column>                     
                         <p:column headerText="DNI" filterBy="#{traz.DNI}" filterMatchMode="contains">
-                            <p:outputLabel value="#{traz.DNI}"/>
+                            <p:outputLabel value="#{traz.DNI}" style="color: #000000"/>
                         </p:column>
                         <p:column headerText="CARRERA" filterBy="#{traz.CARRERA}" filterMatchMode="contains">
-                            <p:outputLabel value="#{traz.CARRERA}"/>
+                            <p:outputLabel value="#{traz.CARRERA}" style="color: #000000"/>
                         </p:column>
                         <p:column headerText="SECCION" filterBy="#{traz.SECCION}" filterMatchMode="contains">
-                            <p:outputLabel value="#{traz.SECCION}"/>
+                            <p:outputLabel value="#{traz.SECCION}" style="color: #000000"/>
                         </p:column>
                         <p:column headerText="AÑO" filterBy="#{traz.AÑO}" filterMatchMode="contains">
-                            <p:outputLabel value="#{traz.AÑO}"/>
+                            <p:outputLabel value="#{traz.AÑO}" style="color: #000000"/>
                         </p:column>
                     </p:dataTable>
                 </h:form>
