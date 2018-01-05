@@ -36,6 +36,8 @@ public class Alumnos {
     private String secTraz;
     private String modingTraz;
     private String yearTraz;
+    private String fechaTraz;
+    private String estTraz = "A";
 
     private int cantCar, cantProv, cantProvCañete;
     private String nomCar, nomProv, nomProvCañete;
@@ -45,6 +47,22 @@ public class Alumnos {
     private Date NACIMIENT0;
 
     private String countPersonaTemp;
+
+    public String getFechaTraz() {
+        return fechaTraz;
+    }
+
+    public void setFechaTraz(String fechaTraz) {
+        this.fechaTraz = fechaTraz;
+    }
+
+    public String getEstTraz() {
+        return estTraz;
+    }
+
+    public void setEstTraz(String estTraz) {
+        this.estTraz = estTraz;
+    }
 
     public String getCodPerTraz() {
         return codPerTraz;

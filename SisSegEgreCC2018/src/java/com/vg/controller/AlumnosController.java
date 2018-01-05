@@ -34,7 +34,9 @@ public class AlumnosController implements Serializable {
     private PieChartModel pieModel2;
 
     Date ahora = new Date();
+    Date time = new Date();
     SimpleDateFormat formateador = new SimpleDateFormat("yyyy");
+    SimpleDateFormat alltime = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
     @PostConstruct
     public void ini() {
@@ -159,6 +161,7 @@ public class AlumnosController implements Serializable {
             alum.setCodPerTraz(selected.getCod_est());
             alum.setCodCarTraz(selected.getCod_car());
             alum.setYearTraz(formateador.format(ahora));
+            alum.setFechaTraz(alltime.format(time));
             dao.asignarAlumnos(alum);
             dao.cambioEstadoAsignado(alum);
             listarAlumnosActivo();
