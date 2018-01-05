@@ -1,8 +1,24 @@
 package com.vg.model;
 
-
 public class Trazabilidad {
-    private String NOMBRES,DNI,CARRERA,SECCION,MODING,AÑO;
+
+    private String NOMBRES, DNI, CARRERA, SECCION, MODING, AÑO, CODTRAZ, CODEST;
+
+    public String getCODTRAZ() {
+        return CODTRAZ;
+    }
+
+    public void setCODTRAZ(String CODTRAZ) {
+        this.CODTRAZ = CODTRAZ;
+    }
+
+    public String getCODEST() {
+        return CODEST;
+    }
+
+    public void setCODEST(String CODEST) {
+        this.CODEST = CODEST;
+    }
 
     public String getNOMBRES() {
         return NOMBRES;
@@ -51,6 +67,5 @@ public class Trazabilidad {
     public void setAÑO(String AÑO) {
         this.AÑO = AÑO;
     }
-    
-    
+
 }

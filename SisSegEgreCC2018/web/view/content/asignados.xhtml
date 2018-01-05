@@ -15,9 +15,10 @@
             </ui:define>
 
             <ui:define name="content">
-                <h:form>
+                <h:form id="formAsignados">
                     <p:commandButton value="Actualizar" actionListener="#{trazabilidadController.mostrarTrazabilidad()}" update="trazaTable"/>
-                    <p:dataTable value="#{trazabilidadController.lstTrazabildad}" var="traz" widgetVar="trazTable" id="trazaTable"> 
+                    <p:dataTable value="#{trazabilidadController.lstTrazabildad}" var="traz" widgetVar="trazTable" id="trazaTable"
+                                 selectionMode="single" selection="#{trazabilidadController.selected}" rowKey="#{traz.CODTRAZ}"> 
                         <p:column headerText="NOMBRES" filterBy="#{traz.NOMBRES}" filterMatchMode="contains">
                             <p:outputLabel value="#{traz.NOMBRES}" style="color: #000000"/>
                         </p:column>                       
@@ -37,6 +38,20 @@
                             <p:outputLabel value="#{traz.AÑO}" style="color: #000000"/>
                         </p:column>
                     </p:dataTable>
+
+                    <p:contextMenu for="trazaTable">
+                        <p:menuitem value="Editar"
+                                    icon="ui-icon-pencil"/>
+
+                        <p:menuitem value="Desasignar" icon="ui-icon-transferthick-e-w" actionListener="#{trazabilidadController.desasignarAlumno()}" update="trazaTable">
+                            <p:confirm header="Desasignar" message="Quieres desasignar a este alumno?" icon="ui-icon-alert" />
+                        </p:menuitem>
+
+                    </p:contextMenu>
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="formAsignados"/>
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
                 </h:form>
             </ui:define>
 
