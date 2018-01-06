@@ -9,8 +9,6 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -24,7 +22,7 @@ public class TrazabilidadController implements Serializable {
     private Trazabilidad selected;
 
     Date time = new Date();
-    SimpleDateFormat alltime = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+    SimpleDateFormat alltime = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
     @PostConstruct
     public void init() {

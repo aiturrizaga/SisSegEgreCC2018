@@ -36,7 +36,7 @@ public class AlumnosController implements Serializable {
     Date ahora = new Date();
     Date time = new Date();
     SimpleDateFormat formateador = new SimpleDateFormat("yyyy");
-    SimpleDateFormat alltime = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+    SimpleDateFormat alltime = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
     @PostConstruct
     public void ini() {

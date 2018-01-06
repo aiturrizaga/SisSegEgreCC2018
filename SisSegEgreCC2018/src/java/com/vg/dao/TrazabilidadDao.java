@@ -26,7 +26,7 @@ public class TrazabilidadDao extends Dao {
                 tz.setCARRERA(rs.getString("CARRERA"));
                 tz.setSECCION(rs.getString("SECCION"));
                 tz.setMODING(rs.getString("MODING"));
-                tz.setAÑO(rs.getString("AÑO"));
+                tz.setYEAR(rs.getString("AÑO"));
                 tz.setCODEST(rs.getString("PERSONA"));
                 tz.setCODTRAZ(rs.getString("TRAZABILIDAD"));
                 tz.setCodCarrera(rs.getString("CODCAR"));
@@ -74,7 +74,7 @@ public class TrazabilidadDao extends Dao {
             ps.setString(2, traz.getCodCarrera());
             ps.setString(3, traz.getSECCION());
             ps.setString(4, traz.getModoIngreso());
-            ps.setString(5, traz.getAÑO());
+            ps.setString(5, traz.getYEAR());
             ps.setString(6, traz.getTimeActual());
             ps.setString(7, "A");
             ps.executeUpdate();

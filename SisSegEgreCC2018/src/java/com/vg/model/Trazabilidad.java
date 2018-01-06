@@ -2,7 +2,7 @@ package com.vg.model;
 
 public class Trazabilidad {
 
-    private String NOMBRES, DNI, CARRERA, SECCION, MODING, AÑO, CODTRAZ, CODEST;
+    private String NOMBRES, DNI, CARRERA, SECCION, MODING, YEAR, CODTRAZ, CODEST;
     private String CodCarrera, ModoIngreso, TimeActual;
 
     public String getTimeActual() {
@@ -85,12 +85,12 @@ public class Trazabilidad {
         this.MODING = MODING;
     }
 
-    public String getAÑO() {
-        return AÑO;
+    public String getYEAR() {
+        return YEAR;
     }
 
-    public void setAÑO(String AÑO) {
-        this.AÑO = AÑO;
+    public void setYEAR(String YEAR) {
+        this.YEAR = YEAR;
     }
-
+    
 }
