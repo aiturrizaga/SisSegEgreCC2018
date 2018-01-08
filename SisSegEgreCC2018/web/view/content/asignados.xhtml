@@ -20,8 +20,9 @@
                     <p:dataTable value="#{trazabilidadController.lstTrazabildad}" 
                                  var="traz" widgetVar="trazTable" id="trazaTable"
                                  selectionMode="single" selection="#{trazabilidadController.selected}" 
-                                 rowKey="#{traz.CODTRAZ}" filteredValue="#{trazabilidadController.lstTrazabildad2}"> 
-                        <p:column headerText="NOMBRES" filterBy="#{traz.NOMBRES}" filterMatchMode="contains" groupRow="true">
+                                 rowKey="#{traz.CODTRAZ}" filteredValue="#{trazabilidadController.lstTrazabildad2}"
+                                 > 
+                        <p:column headerText="NOMBRES" filterBy="#{traz.NOMBRES}" filterMatchMode="contains" groupRow="true" id="colNom">
                             <p:outputLabel value="#{traz.NOMBRES}" style="color: #000000"/>
                         </p:column>                       
                         <p:column headerText="MODO-INGRESO" filterBy="#{traz.MODING}" filterMatchMode="contains">
@@ -40,6 +41,7 @@
                             <p:outputLabel value="#{traz.YEAR}" style="color: #000000"/>
                         </p:column>
                     </p:dataTable>
+                    
 
                     <p:contextMenu for="trazaTable">
                         <p:menuitem value="Editar"

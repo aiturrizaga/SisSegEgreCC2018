@@ -31,6 +31,7 @@ public class TrazabilidadDao extends Dao {
                 tz.setCODTRAZ(rs.getString("TRAZABILIDAD"));
                 tz.setCodCarrera(rs.getString("CODCAR"));
                 tz.setModoIngreso(rs.getString("INGRESO"));
+                tz.setESTADO(rs.getString("ESTADO"));
                 lista.add(tz);
             }
         } catch (SQLException e) {
@@ -68,15 +69,27 @@ public class TrazabilidadDao extends Dao {
     public void updateAlumTraz(Trazabilidad traz) throws Exception{
         try {
             this.Conexion();
-            String sql = "INSERT INTO TRAZABILIDAD(COD_EST,COD_CAR,SECCION,MOD_ING,ANO_TRAZ,FECHA_TRAZ,EST_TRAZ) VALUES (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO TRAZABILIDAD(COD_EST,COD_CAR,SECCION,MOD_ING,ANO_TRAZ,FECHA_TRAZ,EST_TRAZ) VALUES (?,?,?,?,?,SYSDATE,?)";
             PreparedStatement ps = this.getCn().prepareStatement(sql);
             ps.setString(1, traz.getCODEST());
             ps.setString(2, traz.getCodCarrera());
             ps.setString(3, traz.getSECCION());
             ps.setString(4, traz.getModoIngreso());
             ps.setString(5, traz.getYEAR());
-            ps.setString(6, traz.getTimeActual());
-            ps.setString(7, "A");
+            ps.setString(6, "A");
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+    
+    public void cambiarEstadoE(String codTraz) throws Exception {
+        try {
+            this.Conexion();
+            String sql = "UPDATE TRAZABILIDAD SET EST_TRAZ = ? WHERE COD_TRAZ = ?";
+            PreparedStatement ps = this.getCn().prepareStatement(sql);
+            ps.setString(1, "E");
+            ps.setString(2, codTraz);
             ps.executeUpdate();
         } catch (SQLException e) {
             throw e;

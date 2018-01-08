@@ -171,7 +171,7 @@
 
                         <f:facet name="header">
                             <p:outputLabel value="Lista de Estudiantes" style="color: black"/>
-                            <p:commandButton value="Actualizar" actionListener="#{alumnosController.listarAlumnosActivo()}" update="tblAlumnos"/>
+                            <p:commandButton value="Actualizar" actionListener="#{alumnosController.listarAlumnosActivo()}" update="tblAlumnos" oncomplete="location.reload();"/>
                         </f:facet>
                         <p:column style="width:50px">
                             <p:rowToggler />

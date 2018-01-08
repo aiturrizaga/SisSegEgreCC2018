@@ -48,7 +48,8 @@
                     <p:commandButton value="Actualizar"
                                      icon="ui-icon-check"
                                      actionListener="#{trazabilidadController.updateAlumTraz()}"
-                                     oncomplete="handleSubmit(args,'updateDialog');"/>
+                                     oncomplete="handleSubmit(args,'updateDialog');"
+                                     update="updateform formAsignados:trazaTable"/>
 
                     <p:commandButton value="Cancelar"
                                      icon="ui-icon-close" 

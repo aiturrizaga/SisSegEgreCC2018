@@ -60,7 +60,7 @@ public class TrazabilidadController implements Serializable {
         TrazabilidadDao dao;
         try {
             dao = new TrazabilidadDao();
-            selected.setTimeActual(alltime.format(time));
+            dao.cambiarEstadoE(selected.getCODTRAZ());
             dao.updateAlumTraz(selected);
             mostrarTrazabilidad();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "ACTUALIZADO", "Correctamente"));

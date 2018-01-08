@@ -161,7 +161,6 @@ public class AlumnosController implements Serializable {
             alum.setCodPerTraz(selected.getCod_est());
             alum.setCodCarTraz(selected.getCod_car());
             alum.setYearTraz(formateador.format(ahora));
-            alum.setFechaTraz(alltime.format(time));
             dao.asignarAlumnos(alum);
             dao.cambioEstadoAsignado(alum);
             listarAlumnosActivo();
