@@ -25,10 +25,10 @@ public class Alumnos {
     private String sec_est;
     private String promo_est;
     private String eco_est;
-    private String nota1;
-    private String nota2;
-    private String nota3;
-    private String nota4;
+    private String nota1 = "0";
+    private String nota2 = "0";
+    private String nota3 = "0";
+    private String nota4 = "0";
     private String sexo = "M";
 
     private String codPerTraz;

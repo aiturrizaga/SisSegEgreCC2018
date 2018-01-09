@@ -153,8 +153,8 @@ public class AlumnosController implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "ERROR", "Corregir los datos"));
         }
     }
-    
-    public void asignarAlumnos() throws Exception{
+
+    public void asignarAlumnos() throws Exception {
         AlumnosDao dao;
         try {
             dao = new AlumnosDao();
@@ -230,7 +230,7 @@ public class AlumnosController implements Serializable {
         for (Alumnos alu : lstCantDist) {
             pieModel1.set(alu.getNomProv(), alu.getCantProv());
         }
-        pieModel1.setTitle("Cantidad de Alumnos por Distrito");
+        pieModel1.setTitle("Cantidad de Alumnos por Provincia");
         pieModel1.setLegendPosition("ne");
         pieModel1.setShowDataLabels(true);
         pieModel1.setDiameter(230);
