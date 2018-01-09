@@ -21,7 +21,7 @@
                                  var="traz" widgetVar="trazTable" id="trazaTable"
                                  selectionMode="single" selection="#{trazabilidadController.selected}" 
                                  rowKey="#{traz.CODTRAZ}" filteredValue="#{trazabilidadController.lstTrazabildad2}"
-                                 > 
+                                 rowStyleClass="#{traz.ESTADO == 'E' ? 'desactivado' : 'activado'}"> 
                         <p:column headerText="NOMBRES" filterBy="#{traz.NOMBRES}" filterMatchMode="contains" groupRow="true" id="colNom">
                             <p:outputLabel value="#{traz.NOMBRES}" style="color: #000000"/>
                         </p:column>                       
@@ -42,6 +42,18 @@
                         </p:column>
                     </p:dataTable>
                     
+                    <style>
+                        .desactivado {
+                            background-color: #e0e0e0;
+                            color: #ff0000;
+                            font-size: 10px;
+                            pointer-events: none;
+                        }
+                        
+                        .desactivado:hover {
+                            background-color: #e0e0e0;
+                        }
+                    </style>
 
                     <p:contextMenu for="trazaTable">
                         <p:menuitem value="Editar"

@@ -47,7 +47,7 @@ public class TrazabilidadController implements Serializable {
         TrazabilidadDao dao;
         try {
             dao = new TrazabilidadDao();
-            dao.desasignarAlumno(selected.getCODTRAZ());
+            dao.desasignarAlumno(selected.getCODEST());
             dao.changeEstadoALU(selected.getCODEST());
             mostrarTrazabilidad();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "DESASIGNADO", "Correctamente"));

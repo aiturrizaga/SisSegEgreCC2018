@@ -40,13 +40,13 @@ public class TrazabilidadDao extends Dao {
         return lista;
     }
 
-    public void desasignarAlumno(String codTraz) throws Exception {
+    public void desasignarAlumno(String codEst) throws Exception {
         try {
             this.Conexion();
-            String sql = "UPDATE TRAZABILIDAD SET EST_TRAZ = ? WHERE COD_TRAZ = ?";
+            String sql = "UPDATE TRAZABILIDAD SET EST_TRAZ = ? WHERE COD_EST = ? ";
             PreparedStatement ps = this.getCn().prepareStatement(sql);
             ps.setString(1, "I");
-            ps.setString(2, codTraz);
+            ps.setString(2, codEst);
             ps.executeUpdate();
         } catch (SQLException e) {
             throw e;

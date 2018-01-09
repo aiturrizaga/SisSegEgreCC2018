@@ -80,7 +80,7 @@
                                 <span class="card-title">Datos del Alumno</span>
                                 <div class="row">
                                     <div class="input-field col s12 m2">
-                                        <p:inputMask mask="99999999" id="txtDni" value="#{alumnosController.alum.dni_est}"/>
+                                        <p:inputMask mask="99999999" id="txtDni" value="#{alumnosController.alum.dni_est}" required="true" requiredMessage="DNI requerido"/>
                                         <label for="txtDni">DNI</label>
                                     </div>
                                     <div class="input-field col s12 m4">
