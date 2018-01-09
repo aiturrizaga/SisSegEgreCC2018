@@ -14,6 +14,7 @@ public class AlumnosDao extends Dao {
 
     Format formatter = new SimpleDateFormat("dd/MM/yyyy");
     Date ahora = new Date();
+    
 
     public void registrarAlumno(Alumnos al) throws Exception {
         this.Conexion();
@@ -252,6 +253,43 @@ public class AlumnosDao extends Dao {
             String sql = "SELECT * FROM VW_PERSONASTEMP WHERE COD_EST like ?";
             PreparedStatement ps = this.getCn().prepareCall(sql);
             ps.setString(1, cod);
+            rs = ps.executeQuery();
+            Alumnos alums = new Alumnos();
+            rs.next();
+            alums.setCod_est(rs.getString("COD_EST"));
+            alums.setNom_est(rs.getString("NOM_EST"));
+            alums.setApe_est(rs.getString("APE_EST"));
+            alums.setDni_est(rs.getString("DNI_EST"));
+            alums.setFecnac_est(rs.getDate("FEC_NAC_EST"));
+            alums.setDirec_est(rs.getString("DIREC_EST"));
+            alums.setRef_est(rs.getString("REF_EST"));
+            alums.setCel_est(rs.getString("CEL_EST"));
+            alums.setCorreo_est(rs.getString("CORREO_EST"));
+            alums.setYear_est(rs.getString("YEAR_DETCOL"));
+            alums.setSec_est(rs.getString("SEC_DETCOL"));
+            alums.setNota1(rs.getString("NOTE1_DETCOL"));
+            alums.setNota2(rs.getString("NOTE2_DETCOL"));
+            alums.setNota3(rs.getString("NOTE3_DETCOL"));
+            alums.setCod_col(rs.getString("NOM_COL"));
+            alums.setUbigeo_est(rs.getString("UBIGEO"));
+            alums.setCod_car(rs.getString("COD_CAR"));
+            alums.setPromo_est(rs.getString("PROMO_EST"));
+            alums.setSexo(rs.getString("SEXO_EST"));
+            alums.setEco_est(rs.getString("ECON_EST"));
+            alums.setNota4(rs.getString("NOTE4"));
+            return alums;
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+    
+    public Alumnos jalarDataFromDni(String dni) throws SQLException{
+        ResultSet rs;
+        try {
+            this.Conexion();
+            String sql = "SELECT * FROM VW_PERSONASTEMP WHERE DNI_EST like ?";
+            PreparedStatement ps = this.getCn().prepareCall(sql);
+            ps.setString(1, dni);
             rs = ps.executeQuery();
             Alumnos alums = new Alumnos();
             rs.next();

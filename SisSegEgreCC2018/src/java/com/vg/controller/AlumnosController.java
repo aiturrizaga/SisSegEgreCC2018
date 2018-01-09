@@ -12,6 +12,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
 import org.primefaces.model.chart.PieChartModel;
 
 @Named(value = "alumnosController")
@@ -32,11 +33,10 @@ public class AlumnosController implements Serializable {
     private PieChartModel pieModel;
     private PieChartModel pieModel1;
     private PieChartModel pieModel2;
+    private boolean estadoButton;
 
     Date ahora = new Date();
-    Date time = new Date();
     SimpleDateFormat formateador = new SimpleDateFormat("yyyy");
-    SimpleDateFormat alltime = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
     @PostConstruct
     public void ini() {
@@ -80,8 +80,10 @@ public class AlumnosController implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "INGRESADO", alum.getApe_est() + " " + alum.getNom_est() + " agregado."));
             limpiar();
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Corriga los datos."));
-            throw e;
+            RequestContext context = RequestContext.getCurrentInstance();
+            context.execute("PF('actualizarDialog').show();");
+//            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Ya estas registrado."));
+            //            throw e;
         }
     }
 
@@ -135,6 +137,17 @@ public class AlumnosController implements Serializable {
         }
     }
 
+    public void jalarDataFromDni() throws SQLException {
+        AlumnosDao dao;
+        try {
+            dao = new AlumnosDao();
+            alum = dao.jalarDataFromDni(alum.getDni_est());
+            estadoButton = true;
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
     public void editarAlumnos() throws Exception {
         AlumnosDao dao;
         try {
@@ -154,6 +167,26 @@ public class AlumnosController implements Serializable {
         }
     }
 
+    public void actualizarDataAlum() {
+        AlumnosDao dao;
+        try {
+            dao = new AlumnosDao();
+            alum.setCod_col(dao.leerCol(alum.getCod_col()));
+            alum.setUbigeo_est(dao.leerUbi(alum.getUbigeo_est()));
+            dao.editarAlumnos(alum);
+            estadoButton = false;
+            limpiar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "ACTUALIZADO", "Tus datos han sido actualizados"));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "ERROR", "Corregir los datos"));
+        }
+    }
+
+    public void cancelUpdateDataAlum() {
+        estadoButton = false;
+        limpiar();
+    }
+
     public void asignarAlumnos() throws Exception {
         AlumnosDao dao;
         try {
@@ -167,7 +200,7 @@ public class AlumnosController implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "ASIGNADO", "Correctamente"));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "ERROR", "No se pudo asignar"));
-            throw e;
+//            throw e;
         }
     }
 
@@ -264,6 +297,18 @@ public class AlumnosController implements Serializable {
         alum.setNota2(null);
         alum.setNota3(null);
         alum.setNota4(null);
+    }
+
+
+    /*
+    Getter and Setter
+     */
+    public boolean isEstadoButton() {
+        return estadoButton;
+    }
+
+    public void setEstadoButton(boolean estadoButton) {
+        this.estadoButton = estadoButton;
     }
 
     public Alumnos getCodtraza() {

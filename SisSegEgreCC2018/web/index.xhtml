@@ -108,7 +108,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s12 m3">
-                                        <p:calendar  navigator="true" placeholder="Fec. Nac." value="#{alumnosController.alum.fecnac_est}" mask="true"/>
+                                        <p:calendar  navigator="true" placeholder="Fec. Nac." value="#{alumnosController.alum.fecnac_est}" />
                                     </div>
                                     <div class="input-field col s12 m4">
                                         <p:inputText id="txtCorreo" value="#{alumnosController.alum.correo_est}"/>
@@ -121,12 +121,38 @@
                                                         style="width: 90%" maxlength="15" required="true" requiredMessage="Ingresa tu distrito."/>
                                     </div>
                                 </div>
-                                <p:commandButton value="Registrar" actionListener="#{alumnosController.registrarAlumno()}" style="width: 100%" update="formulario"/>
+                                <p:commandButton value="Registrar" actionListener="#{alumnosController.registrarAlumno()}"
+                                                 style="width: 100%" update="formulario frmDlg" rendered="#{!alumnosController.estadoButton}"/>
+                                
+                                <p:commandButton value="Actualizar Datos" actionListener="#{alumnosController.actualizarDataAlum()}"
+                                                 style="width: 100%" update="formulario" rendered="#{alumnosController.estadoButton}"/>
+                                <br/><br/>
+                                <p:commandButton value="Cancelar" actionListener="#{alumnosController.cancelUpdateDataAlum()}"
+                                                 style="width: 100%" update="formulario" rendered="#{alumnosController.estadoButton}"/>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
+            <h:form id="frmDlg">
+                <p:dialog widgetVar="actualizarDialog" header="Ya estas registrado" id="actualizarDlg" responsive="true" closeOnEscape="true">
+                    <p:outputLabel value="Deseas actualizar tus datos?"/>
+                    <br/><br/>
+                    
+                    <p:commandButton value="Actualizar"
+                                     icon="ui-icon-check"
+                                     actionListener="#{alumnosController.jalarDataFromDni()}"
+                                     oncomplete="handleSubmit(args,'actualizarDialog');"
+                                     update="formulario"/>
+                    
+                    <p:commandButton value="Cancelar"
+                                     icon="ui-icon-close" 
+                                     onclick="PF('actualizarDialog').hide()"
+                                     immediate="true"/>
+                </p:dialog>
+            </h:form>
+            
         </h:form>
 
         <p:dialog widgetVar="jquery"></p:dialog>
