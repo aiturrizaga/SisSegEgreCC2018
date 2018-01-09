@@ -36,15 +36,21 @@
                                     </div>
                                     <div class="row">
                                         <div class="input-field col s12 m4">
-                                            <p:inputText id="txtPromo" value="#{alumnosController.alum.promo_est}" maxlength="4"/>
+                                            <p:inputText id="txtPromo" value="#{alumnosController.alum.promo_est}" maxlength="4">
+                                                <p:keyFilter regEx="/[\d]/"/>
+                                            </p:inputText>
                                             <label for="txtPromo">Promoción</label>
                                         </div>
                                         <div class="input-field col s12 m4">
-                                            <p:inputText id="txtGrado" value="#{alumnosController.alum.year_est}" maxlength="1"/>
+                                            <p:inputText id="txtGrado" value="#{alumnosController.alum.year_est}" maxlength="1">
+                                                <p:keyFilter regEx="/[\d]/"/>
+                                            </p:inputText>
                                             <label for="txtGrado">Grado</label>
                                         </div>
                                         <div class="input-field col s12 m4">
-                                            <p:inputText id="txtSec" value="#{alumnosController.alum.sec_est}" style="text-transform: uppercase"/>
+                                            <p:inputText id="txtSec" value="#{alumnosController.alum.sec_est}" style="text-transform: uppercase">
+                                                <p:keyFilter regEx="/[a-z_]/i"/>
+                                            </p:inputText>
                                             <label for="txtSec">Sección</label>
                                         </div>
                                     </div>
@@ -64,7 +70,7 @@
                                             <label for="txtDni">DNI</label>
                                         </div>
                                         <div class="input-field col s12 m4">
-                                            <p:inputText id="txtNom" value="#{alumnosController.alum.nom_est}" style="text-transform: capitalize" />
+                                            <p:inputText id="txtNom" value="#{alumnosController.alum.nom_est}" style="text-transform: capitalize"/>
                                             <label for="txtNom">Nombres</label>
                                         </div>
                                         <div class="input-field col s12 m6">
@@ -149,13 +155,12 @@
                                         </div>
                                     </div>
 
-                                    <p:commandButton value="Registrar" actionListener="#{alumnosController.registrarAlumno()}" update="tblAlumnos fcAcColegios form"/>
+                                    <p:commandButton value="Registrar" actionListener="#{alumnosController.registrarAlumnoFromAdmin()}" update="tblAlumnos fcAcColegios form"/>
 
                                 </div>
                             </div>
                         </div>
                     </div>
-
 
                     <p:dataTable 
                         id="tblAlumnos" 
@@ -234,7 +239,7 @@
                                     actionListener="#{alumnosController.jalarDataAlumnos()}"
                                     oncomplete="PF('editarAlumnos').show()"
                                     update=":editform"/>
-                        
+
                         <p:menuitem value="Asignar"
                                     icon="ui-icon-transferthick-e-w"
                                     actionListener="#{alumnosController.jalarDataAlumnos()}"

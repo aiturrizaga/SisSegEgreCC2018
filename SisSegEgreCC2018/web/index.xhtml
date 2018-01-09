@@ -121,7 +121,7 @@
                                                         style="width: 90%" maxlength="15" required="true" requiredMessage="Ingresa tu distrito."/>
                                     </div>
                                 </div>
-                                <p:commandButton value="Registrar" actionListener="#{alumnosController.registrarAlumno()}"
+                                <p:commandButton value="Registrar" actionListener="#{alumnosController.registrarAlumnoFromIndex()}"
                                                  style="width: 100%" update="formulario frmDlg" rendered="#{!alumnosController.estadoButton}"/>
                                 
                                 <p:commandButton value="Actualizar Datos" actionListener="#{alumnosController.actualizarDataAlum()}"

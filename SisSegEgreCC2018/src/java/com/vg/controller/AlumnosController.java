@@ -64,7 +64,7 @@ public class AlumnosController implements Serializable {
 
     }
 
-    public void registrarAlumno() throws Exception {
+    public void registrarAlumnoFromIndex() throws Exception {
         AlumnosDao dao;
         try {
             dao = new AlumnosDao();
@@ -82,8 +82,26 @@ public class AlumnosController implements Serializable {
         } catch (Exception e) {
             RequestContext context = RequestContext.getCurrentInstance();
             context.execute("PF('actualizarDialog').show();");
-//            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Ya estas registrado."));
-            //            throw e;
+        }
+    }
+    
+    public void registrarAlumnoFromAdmin() throws Exception {
+        AlumnosDao dao;
+        try {
+            dao = new AlumnosDao();
+            alum.setCod_col(dao.leerCol(alum.getCod_col()));
+            alum.setUbigeo_est(dao.leerUbi(alum.getUbigeo_est()));
+            dao.registrarAlumno(alum);
+            listarAlumnosActivo();
+            listaCantDistritos();
+            countPersonaTemp();
+            listarTopColegios();
+            listaCantCarrera();
+            listaCantDistCañete();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "INGRESADO", alum.getApe_est() + " " + alum.getNom_est() + " agregado."));
+            limpiar();
+        } catch (Exception e) {
+             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", alum.getDni_est() + " " + "ya existe."));
         }
     }
 
