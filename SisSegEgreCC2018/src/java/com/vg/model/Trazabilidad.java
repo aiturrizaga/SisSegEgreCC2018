@@ -2,8 +2,16 @@ package com.vg.model;
 
 public class Trazabilidad {
 
-    private String NOMBRES, DNI, CARRERA, SECCION, MODING, YEAR, CODTRAZ, CODEST, ESTADO;
+    private String NOMBRES, DNI, CARRERA, SECCION, MODING, YEAR, CODTRAZ, CODEST, ESTADO,FECHA;
     private String CodCarrera, ModoIngreso, TimeActual;
+
+    public String getFECHA() {
+        return FECHA;
+    }
+
+    public void setFECHA(String FECHA) {
+        this.FECHA = FECHA;
+    }
 
     public String getESTADO() {
         return ESTADO;

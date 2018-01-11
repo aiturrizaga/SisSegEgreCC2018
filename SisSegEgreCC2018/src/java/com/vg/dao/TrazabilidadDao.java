@@ -32,6 +32,7 @@ public class TrazabilidadDao extends Dao {
                 tz.setCodCarrera(rs.getString("CODCAR"));
                 tz.setModoIngreso(rs.getString("INGRESO"));
                 tz.setESTADO(rs.getString("ESTADO"));
+                tz.setFECHA(rs.getString("FECHA"));
                 lista.add(tz);
             }
         } catch (SQLException e) {

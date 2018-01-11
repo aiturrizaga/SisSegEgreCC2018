@@ -21,7 +21,7 @@
                                  var="traz" widgetVar="trazTable" id="trazaTable"
                                  selectionMode="single" selection="#{trazabilidadController.selected}" 
                                  rowKey="#{traz.CODTRAZ}" filteredValue="#{trazabilidadController.lstTrazabildad2}"
-                                 rowStyleClass="#{traz.ESTADO == 'E' ? 'desactivado' : 'activado'}"> 
+                                 rowStyleClass="#{traz.ESTADO == 'E' ? 'desactivado' : 'activado'}" scrollable="true" scrollHeight="600"> 
                         <p:column headerText="NOMBRES" filterBy="#{traz.NOMBRES}" filterMatchMode="contains" groupRow="true" id="colNom">
                             <p:outputLabel value="#{traz.NOMBRES}" style="color: #000000"/>
                         </p:column>                       
@@ -39,6 +39,9 @@
                         </p:column>
                         <p:column headerText="AÑO" filterBy="#{traz.YEAR}" filterMatchMode="contains">
                             <p:outputLabel value="#{traz.YEAR}" style="color: #000000"/>
+                        </p:column>
+                        <p:column headerText="FECHA" >
+                            <p:outputLabel value="#{traz.FECHA}" style="color: #000000"/>
                         </p:column>
                     </p:dataTable>
                     
