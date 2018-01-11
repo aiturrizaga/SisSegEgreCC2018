@@ -10,6 +10,16 @@
     <h:body>
         
         <h:form>
+            <p:selectOneMenu value="#{registrosController.reg.codCurReg}">
+                <f:selectItem itemLabel="Algoritmos" itemValue="1"/>
+                <f:selectItem itemLabel="Matematicas" itemValue="2"/>
+                <f:selectItem itemLabel="Soporte Tecnico" itemValue="3"/>
+                <f:selectItem itemLabel="Ofimatica" itemValue="4"/>
+                <f:selectItem itemLabel="Comunicacion" itemValue="5"/>
+                <f:selectItem itemLabel="Biologia" itemValue="6"/>
+                <f:selectItem itemLabel="Quimica" itemValue="7"/>
+            </p:selectOneMenu>
+            
             <p:selectOneMenu value="#{registrosController.codCar}">
                 <f:selectItem itemLabel="Análisis de Sistemas" itemValue="1"/>
                 <f:selectItem itemLabel="Producción Agraria" itemValue="2"/>
@@ -20,6 +30,7 @@
                 <f:selectItem itemLabel="B" itemValue="B"/>
                 <f:selectItem itemLabel="C" itemValue="C"/>
             </p:selectOneMenu>
+            
             
             <p:commandButton value="consultar" actionListener="#{registrosController.consultar()}" update="tblReg"/>
             

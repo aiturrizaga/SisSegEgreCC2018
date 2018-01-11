@@ -9,6 +9,25 @@ public class Registros {
     private String codCarReg;
     private String nomCarReg;
     private String seccionReg;
+    
+    private String codCurReg;
+    private String nomCurReg;
+
+    public String getCodCurReg() {
+        return codCurReg;
+    }
+
+    public void setCodCurReg(String codCurReg) {
+        this.codCurReg = codCurReg;
+    }
+
+    public String getNomCurReg() {
+        return nomCurReg;
+    }
+
+    public void setNomCurReg(String nomCurReg) {
+        this.nomCurReg = nomCurReg;
+    }
 
     public String getNumOrdenReg() {
         return numOrdenReg;
