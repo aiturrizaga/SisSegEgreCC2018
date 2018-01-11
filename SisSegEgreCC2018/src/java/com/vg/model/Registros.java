@@ -10,8 +10,45 @@ public class Registros {
     private String nomCarReg;
     private String seccionReg;
     
+    private String asisReg;
+    private String notasReg;
+    private String fechaReg;
+    private String nomCriterio;
+    
     private String codCurReg;
     private String nomCurReg;
+
+    public String getNomCriterio() {
+        return nomCriterio;
+    }
+
+    public void setNomCriterio(String nomCriterio) {
+        this.nomCriterio = nomCriterio;
+    }
+
+    public String getFechaReg() {
+        return fechaReg;
+    }
+
+    public void setFechaReg(String fechaReg) {
+        this.fechaReg = fechaReg;
+    }
+
+    public String getAsisReg() {
+        return asisReg;
+    }
+
+    public void setAsisReg(String asisReg) {
+        this.asisReg = asisReg;
+    }
+
+    public String getNotasReg() {
+        return notasReg;
+    }
+
+    public void setNotasReg(String notasReg) {
+        this.notasReg = notasReg;
+    }
 
     public String getCodCurReg() {
         return codCurReg;

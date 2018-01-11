@@ -8,7 +8,7 @@
         <title>Registros</title>
     </h:head>
     <h:body>
-        
+
         <h:form>
             <p:selectOneMenu value="#{registrosController.reg.codCurReg}">
                 <f:selectItem itemLabel="Algoritmos" itemValue="1"/>
@@ -19,37 +19,60 @@
                 <f:selectItem itemLabel="Biologia" itemValue="6"/>
                 <f:selectItem itemLabel="Quimica" itemValue="7"/>
             </p:selectOneMenu>
-            
+
             <p:selectOneMenu value="#{registrosController.codCar}">
                 <f:selectItem itemLabel="Análisis de Sistemas" itemValue="1"/>
                 <f:selectItem itemLabel="Producción Agraria" itemValue="2"/>
             </p:selectOneMenu>
-            
+
             <p:selectOneMenu value="#{registrosController.secc}">
                 <f:selectItem itemLabel="A" itemValue="A"/>
                 <f:selectItem itemLabel="B" itemValue="B"/>
                 <f:selectItem itemLabel="C" itemValue="C"/>
             </p:selectOneMenu>
-            
-            
+
+
             <p:commandButton value="consultar" actionListener="#{registrosController.consultar()}" update="tblReg"/>
-            
+            <p:commandButton value="Agregar" onclick="PF('registrosDialog').show()"/>
+
             <p:dataTable value="#{registrosController.lstRegistros}" var="reg" id="tblReg">
-                <p:column headerText="N°">
+                <p:column headerText="N°" style="width: 40px">
                     <p:outputLabel value="#{reg.numOrdenReg}"/>
                 </p:column>
                 <p:column headerText="Estudiantes">
                     <p:outputLabel value="#{reg.nomPerReg}"/>
                 </p:column>
-                <p:column headerText="Carrera">
-                    <p:outputLabel value="#{reg.nomCarReg}"/>
+                <p:column headerText="Asistencia">
+                    <p:selectManyCheckbox value="#{reg.asisReg}">
+                        <f:selectItem itemLabel="" itemValue="A"/>
+                    </p:selectManyCheckbox>
                 </p:column>
-                <p:column headerText="Sección">
-                    <p:outputLabel value="#{reg.seccionReg}"/>
+                <p:column headerText="Criterio" rendered="#{registrosController.radio}">
+                    <p:outputLabel value="#{reg.notasReg}"/>
                 </p:column>
             </p:dataTable>
+
+
+            <p:dialog widgetVar="registrosDialog" header="Registros">
+                <p:calendar value="#{registrosController.reg.fechaReg}" showOn="button"/>
+                <p:panel id="dialog">
+                    <p:selectOneRadio id="console" value="#{registrosController.raidobutton}">
+                        <f:selectItem itemLabel="Solo Asistencia" itemValue="1"/>
+                        <f:selectItem itemLabel="Asistencia y control" itemValue="2" />
+                        <p:ajax event="change" listener="#{registrosController.radioButtonChange()}" update="dialog"/>
+                    </p:selectOneRadio>
+
+                    <p:inputText value="#{registrosController.reg.nomCriterio}" rendered="#{registrosController.radio}"/>
+                    
+                    <p:commandButton value="Aceptar1" update="tblReg" rendered="#{!registrosController.radio}"/>
+                    <p:commandButton value="Aceptar2" update="tblReg" rendered="#{registrosController.radio}"/>
+                    <p:commandButton value="Cancelar"/>
+                </p:panel>
+
+            </p:dialog>
+
         </h:form>
-        
+
     </h:body>
 </html>
 
