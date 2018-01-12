@@ -53,12 +53,13 @@
                                 <f:facet name="header">
                                     <p:outputLabel value="RANKING DE COLEGIOS"/>
                                 </f:facet>
-                                <p:column headerText="COLEGIO" style="width: 65%">
-                                    <p:outputLabel value="#{al.NOMBRE}" style="font-size: 0.7rem"/>
+                                <p:column headerText="COLEGIO" style="width: 65%" >
+                                    <p:outputLabel value="#{al.NOMBRE}" style="font-size: 0.7rem" id="colTooltipe" title="#{al.DISTRITO_COL}" />
                                 </p:column>
                                 <p:column headerText="ALUMNOS">
                                     <center><p:outputLabel value="#{al.CANTIDAD}" style="color: #01579b"/></center>
                                 </p:column>
+                                
                             </p:dataTable>
                         </div>
                     </div>

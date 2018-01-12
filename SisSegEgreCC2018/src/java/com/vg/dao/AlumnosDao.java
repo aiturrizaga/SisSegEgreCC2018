@@ -466,6 +466,7 @@ public class AlumnosDao extends Dao {
                 emp = new Alumnos();
                 emp.setNOMBRE(rs.getString("NOMBRE"));
                 emp.setCANTIDAD(rs.getString("CANTIDAD"));
+                emp.setDISTRITO_COL(rs.getString("DISTRITO"));
                 lista.add(emp);
             }
         } catch (SQLException e) {

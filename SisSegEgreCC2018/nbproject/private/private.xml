@@ -2,6 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/SisSegEgreCC2018/SisSegEgreCC2018/src/java/com/vg/controller/AlumnosController.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/SisSegEgreCC2018/SisSegEgreCC2018/web/view/content/dashboard.xhtml</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/SisSegEgreCC2018/SisSegEgreCC2018/src/java/com/vg/model/Alumnos.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/SisSegEgreCC2018/SisSegEgreCC2018/src/java/com/vg/dao/AlumnosDao.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -46,7 +46,17 @@ public class Alumnos {
 
     private Date NACIMIENT0;
 
-    private String countPersonaTemp;
+    private String countPersonaTemp,DISTRITO_COL;
+
+    public String getDISTRITO_COL() {
+        return DISTRITO_COL;
+    }
+
+    public void setDISTRITO_COL(String DISTRITO_COL) {
+        this.DISTRITO_COL = DISTRITO_COL;
+    }
+
+
 
     public String getFechaTraz() {
         return fechaTraz;
