@@ -90,7 +90,7 @@ public class RegistrosDao extends Dao {
     public void addRegistros(Registros reg) throws Exception{
         try {
             this.Conexion();
-            String sql = "INSERT INTO REGISTROS(COD_TRAZ,COD_CURSO,NOTA_CURSO,ASIS_CURSO,FECHA_CURSO,NOM_CONTROL) VALUES(?,?,?,?,?,?)";
+            String sql = "INSERT INTO REGISTROS(COD_TRAZ,COD_CURSO,NOTA_CURSO,ASIS_CURSO,FECHA_CURSO,NOM_CONTROL) VALUES(?,?,?,?,to_date(?,'dd/MM/yyyy'),?)";
             PreparedStatement ps = this.getCn().prepareStatement(sql);
             ps.setString(1, reg.getCodTrazReg());
             ps.setString(2, reg.getCodCurReg());

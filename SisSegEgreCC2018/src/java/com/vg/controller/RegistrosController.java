@@ -86,6 +86,7 @@ public class RegistrosController implements Serializable {
     public void addRegistros() throws Exception{
         RegistrosDao dao;
         try {
+            reg.setFechaReg(formateador.format(ahora));
             dao = new RegistrosDao();
             dao.addRegistros(reg);
         } catch (Exception e) {
