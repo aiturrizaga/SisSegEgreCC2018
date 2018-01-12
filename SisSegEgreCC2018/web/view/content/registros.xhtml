@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../template/TemplateOne.xhtml">
+            <ui:define name="title">Registros</ui:define>
+            <ui:define name="li"></ui:define>
+
+            <ui:define name="menu5">
+                <li class="active"><a href="../content/registros.xhtml"><i class="material-icons blue-text text-darken-1">today</i>Registros</a></li>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="formReg">
+                    <div class="row">
+                        <div class="col s6 m6">
+
+                            <p:selectOneMenu value="#{registrosController.codCar}">
+                                <f:selectItem itemLabel="Seleccione Carrera" noSelectionOption="true"/>
+                                <f:selectItem itemLabel="Análisis de Sistemas" itemValue="1"/>
+                                <f:selectItem itemLabel="Producción Agraria" itemValue="2"/>
+                            </p:selectOneMenu>
+
+                            <p:selectOneMenu value="#{registrosController.secc}">
+                                <f:selectItem itemLabel="Seleccione Sección:" noSelectionOption="true"/>
+                                <f:selectItem itemLabel="A" itemValue="A"/>
+                                <f:selectItem itemLabel="B" itemValue="B"/>
+                                <f:selectItem itemLabel="C" itemValue="C"/>
+                            </p:selectOneMenu>
+                            
+                            <p:selectOneMenu value="#{registrosController.reg.codCurReg}">
+                                <f:selectItem itemLabel="Seleccione Curso:" noSelectionOption="true"/>
+                                <f:selectItem itemLabel="Algoritmos" itemValue="1"/>
+                                <f:selectItem itemLabel="Matematicas" itemValue="2"/>
+                                <f:selectItem itemLabel="Soporte Tecnico" itemValue="3"/>
+                                <f:selectItem itemLabel="Ofimatica" itemValue="4"/>
+                                <f:selectItem itemLabel="Comunicacion" itemValue="5"/>
+                                <f:selectItem itemLabel="Biologia" itemValue="6"/>
+                                <f:selectItem itemLabel="Quimica" itemValue="7"/>
+                            </p:selectOneMenu>
+
+                            <p:commandButton value="consultar" actionListener="#{registrosController.consultar()}" update="formReg:tblReg"/>
+
+                        </div>
+
+                        <div class="col s6 m6">
+                            <p:commandButton value="Registros anteriores" 
+                                             onclick="PF('viewRegDialog').show();"
+                                             style="float: right"/>
+                            <p:commandButton value="Agregar criterio"
+                                             onclick="PF('addCriterioDialog').show();"
+                                             style="float: right"/>
+                        </div>
+                    </div>
+
+                    <p:dataTable value="#{registrosController.lstRegistros}" var="reg" id="tblReg">
+                        <p:column headerText="N°" style="width: 50px">
+                            <p:outputLabel value="#{reg.numOrdenReg}"/>
+                        </p:column>
+                        <p:column headerText="Estudiantes">
+                            <p:outputLabel value="#{reg.nomPerReg}"/>
+                        </p:column>
+                        <p:column headerText="Asistencia">
+
+                        </p:column>
+                        <p:column headerText="Criterio">
+                            <p:outputLabel value="#{reg.notasReg}"/>
+                        </p:column>
+                    </p:dataTable>
+                    
+                    <p:dialog header="Agregar Criterio" widgetVar="addCriterioDialog" id="addCriterioDlg">
+                        <h:panelGrid columns="1" cellpadding="5">
+                            <p:outputLabel value="Nombre del criterio"/>
+                            <p:inputText />
+                        </h:panelGrid>
+                        <p:separator/>
+                        <p:commandButton value="Agregar"/>
+                        <p:commandButton value="Cancelar"/>
+                    </p:dialog>
+                    
+                    <p:dialog header="Registros Anteriores" widgetVar="viewRegDialog" id="viewRegDlg">
+                        <h:panelGrid columns="2">
+                            <p:selectOneMenu>
+                                <f:selectItem itemLabel="Selecciona Carrera:" noSelectionOption="true"/>
+                                <f:selectItem itemLabel="Análisis de Sistemas" itemValue="1"/>
+                                <f:selectItem itemLabel="Producción Agraria" itemValue="2"/>
+                            </p:selectOneMenu>
+
+                            <p:selectOneMenu>
+                                <f:selectItem itemLabel="Selecciona Sección:" noSelectionOption="true"/>
+                                <f:selectItem itemLabel="A" itemValue="A"/>
+                                <f:selectItem itemLabel="B" itemValue="B"/>
+                                <f:selectItem itemLabel="C" itemValue="C"/>
+                            </p:selectOneMenu>
+                            
+                            <p:selectOneMenu>
+                                <f:selectItem itemLabel="Selecciona Curso:" noSelectionOption="true"/>
+                                <f:selectItem itemLabel="Algoritmos" itemValue="1"/>
+                                <f:selectItem itemLabel="Matematicas" itemValue="2"/>
+                                <f:selectItem itemLabel="Soporte Tecnico" itemValue="3"/>
+                                <f:selectItem itemLabel="Ofimatica" itemValue="4"/>
+                                <f:selectItem itemLabel="Comunicacion" itemValue="5"/>
+                                <f:selectItem itemLabel="Biologia" itemValue="6"/>
+                                <f:selectItem itemLabel="Quimica" itemValue="7"/>
+                            </p:selectOneMenu>
+                            
+                            <p:calendar placeholder="Fecha"/>
+                        </h:panelGrid>
+                        <p:separator/>
+                        <p:commandButton value="Consultar"/>
+                        <p:commandButton value="Cancelar"/>
+                    </p:dialog>
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

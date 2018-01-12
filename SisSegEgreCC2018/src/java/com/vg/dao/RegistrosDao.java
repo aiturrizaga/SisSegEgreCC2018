@@ -17,7 +17,7 @@ public class RegistrosDao extends Dao {
             String sql = "SELECT ROWNUM AS ORDEN , CODTRAZ,CODPER,NOMBRES,CODCAR,CARRERA,SECCION FROM (SELECT\n"
                     + "TRAZABILIDAD.COD_TRAZ AS CODTRAZ,\n"
                     + "PERSONATEMP.COD_EST AS CODPER,\n"
-                    + "CONCAT(CONCAT(PERSONATEMP.NOM_EST,' '),PERSONATEMP.APE_EST) AS NOMBRES,\n"
+                    + "CONCAT(CONCAT(PERSONATEMP.APE_EST,' ,'),PERSONATEMP.NOM_EST) AS NOMBRES,\n"
                     + "CARRERAS.COD_CAR AS CODCAR,\n"
                     + "CARRERAS.NOM_CAR AS CARRERA,\n"
                     + "TRAZABILIDAD.SECCION AS SECCION\n"
@@ -27,8 +27,8 @@ public class RegistrosDao extends Dao {
                     + "INNER JOIN CARRERAS ON\n"
                     + "    TRAZABILIDAD.COD_CAR = CARRERAS.COD_CAR \n"
                     + "WHERE TRAZABILIDAD.EST_TRAZ = 'A'\n"
-                    + "AND CARRERAS.COD_CAR = ? \n"
-                    + "AND TRAZABILIDAD.SECCION = ? \n"
+                    + "AND CARRERAS.COD_CAR = ?\n"
+                    + "AND TRAZABILIDAD.SECCION = ?\n"
                     + "ORDER BY NOMBRES ASC)";
             PreparedStatement ps = this.getCn().prepareStatement(sql);
             ps.setString(1, codCar);

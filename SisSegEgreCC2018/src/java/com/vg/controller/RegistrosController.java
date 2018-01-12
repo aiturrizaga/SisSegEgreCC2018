@@ -18,8 +18,6 @@ public class RegistrosController implements Serializable {
     private List<Registros> lstRegistros;
     private String codCar;
     private String secc;
-    private String raidobutton;
-    private boolean radio;
 
     Date ahora = new Date();
     SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
@@ -28,15 +26,7 @@ public class RegistrosController implements Serializable {
     public void init() {
         reg.setFechaReg(formateador.format(ahora));
     }
-
-    public void radioButtonChange() {
-        if ("1".equals(raidobutton)) {
-            radio = false;
-        } else if ("2".equals(raidobutton)) {
-            radio = true;
-        }
-    }
-
+    
     public void consultar() throws Exception {
         RegistrosDao dao;
         try {
@@ -77,22 +67,6 @@ public class RegistrosController implements Serializable {
 
     public void setLstRegistros(List<Registros> lstRegistros) {
         this.lstRegistros = lstRegistros;
-    }
-
-    public String getRaidobutton() {
-        return raidobutton;
-    }
-
-    public void setRaidobutton(String raidobutton) {
-        this.raidobutton = raidobutton;
-    }
-
-    public boolean isRadio() {
-        return radio;
-    }
-
-    public void setRadio(boolean radio) {
-        this.radio = radio;
     }
 
 }
