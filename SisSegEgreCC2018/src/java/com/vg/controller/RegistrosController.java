@@ -20,8 +20,8 @@ public class RegistrosController implements Serializable {
     private List<Registros> lstRegistros;
     private List<Registros> lstCbCarreras;
     private List<Registros> lstCbCursos;
-    private String codCar, codCar2;
-    private String secc, secc2;
+    private String codCar, codCar2, nombrec;
+    private String secc, secc2, curso;
     private boolean criterio = false;
 
     Date ahora = new Date();
@@ -82,16 +82,36 @@ public class RegistrosController implements Serializable {
             throw e;
         }
     }
-    
-    public void addRegistros() throws Exception{
+
+    public void addRegistros() throws Exception {
         RegistrosDao dao;
         try {
-            reg.setFechaReg(formateador.format(ahora));
             dao = new RegistrosDao();
-            dao.addRegistros(reg);
+            for (Registros model : lstRegistros) {
+                model.setCodCurReg(getCurso());
+                model.setNomCriterio(getNombrec());
+                model.setFechaReg(formateador.format(ahora));
+                dao.addRegistros(model);
+            }
         } catch (Exception e) {
             throw e;
         }
+    }
+
+    public String getNombrec() {
+        return nombrec;
+    }
+
+    public void setNombrec(String nombrec) {
+        this.nombrec = nombrec;
+    }
+
+    public String getCurso() {
+        return curso;
+    }
+
+    public void setCurso(String curso) {
+        this.curso = curso;
     }
 
     public String getCodCar2() {

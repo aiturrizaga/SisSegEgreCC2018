@@ -34,13 +34,14 @@
                                 <f:selectItem itemLabel="C" itemValue="C"/>
                             </p:selectOneMenu>
 
-                            <p:selectOneMenu value="#{registrosController.reg.codCurReg}" id="cbCursos" style="width: 150px">
+                            <p:selectOneMenu value="#{registrosController.curso}" id="cbCursos" style="width: 150px">
                                 <f:selectItem itemLabel="Seleccione Curso:" noSelectionOption="true"/>
                                 <f:selectItems value="#{registrosController.lstCbCursos}" var="cur" itemValue="#{cur.codCurReg}" itemLabel="#{cur.nomCurReg}"/>
                             </p:selectOneMenu>
 
-                            <p:calendar navigator="true" value="#{registrosController.reg.fechaReg}"/>
+                            <p:calendar navigator="true" value="#{registrosController.reg.fechaReg}" pattern="dd/MM/yyyy"/>
                             <p:commandButton value="consultar" actionListener="#{registrosController.consultar()}" update="formReg:tblReg"/>
+                            <p:commandButton value="Registrar" actionListener="#{registrosController.addRegistros()}" update="formReg:tblReg"/>
 
                         </div>
 
@@ -77,7 +78,7 @@
                             </p:cellEditor>
                         </p:column>
 
-                        <p:column rendered="#{registrosController.criterio}" headerText="#{registrosController.reg.nomCriterio}" style="width: 10%">
+                        <p:column rendered="#{registrosController.criterio}" headerText="#{registrosController.nombrec}" style="width: 10%">
                             <p:cellEditor>
                                 <f:facet name="output"><center><p:outputLabel value="#{reg.notasReg}"/></center></f:facet>
                                 <f:facet name="input">
@@ -90,7 +91,7 @@
                     <p:dialog header="Agregar Criterio" widgetVar="addCriterioDialog" id="addCriterioDlg">
                         <h:panelGrid columns="1" cellpadding="5">
                             <p:outputLabel value="Nombre del criterio"/>
-                            <p:inputText value="#{registrosController.reg.nomCriterio}"/>
+                            <p:inputText value="#{registrosController.nombrec}"/>
                         </h:panelGrid>
                         <p:separator/>
                         <p:commandButton value="Agregar" actionListener="#{registrosController.addCriterio()}" oncomplete="handleSubmit(args,'addCriterioDialog');" update="tblReg"/>

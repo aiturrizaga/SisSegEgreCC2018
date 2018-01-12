@@ -38,6 +38,7 @@ public class RegistrosDao extends Dao {
             Registros reg;
             while (rs.next()) {
                 reg = new Registros();
+                reg.setCodTrazReg(rs.getString("CODTRAZ"));
                 reg.setNumOrdenReg(rs.getString("ORDEN"));
                 reg.setNomPerReg(rs.getString("NOMBRES"));
                 reg.setNomCarReg(rs.getString("CARRERA"));
