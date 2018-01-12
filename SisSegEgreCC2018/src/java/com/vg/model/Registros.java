@@ -2,22 +2,23 @@ package com.vg.model;
 
 public class Registros {
 
-    private String numOrdenReg;
-    private String codTrazReg;
+    private String numOrdenReg;//numero de orden del alumno
+    private String codTrazReg;//si
     private String codPerReg;
     private String nomPerReg;
-    private String codCarReg;
-    private String nomCarReg;
+    private String codCarReg;//si
+    private String nomCarReg;//si
     private String seccionReg;
     
-    private String asisReg = "A";
-    private String notasReg;
-    private String fechaReg;
+    private String asisReg = "A";//si
+    private String notasReg;//si
+    private String fechaReg;//si
     private String nomCriterio;
     
-    private String codCurReg;
-    private String nomCurReg;
+    private String codCurReg;//si
+    private String nomCurReg;//si
 
+    
     public String getNomCriterio() {
         return nomCriterio;
     }

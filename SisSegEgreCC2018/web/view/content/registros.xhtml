@@ -19,12 +19,12 @@
             <ui:define name="content">
                 <h:form id="formReg">
                     <div class="row">
-                        <div class="col s6 m6">
+                        <div class="col s7 m6">
 
                             <p:selectOneMenu value="#{registrosController.codCar}" style="width: 150px">
                                 <f:selectItem itemLabel="Seleccione Carrera" noSelectionOption="true"/>
-                                <f:selectItem itemLabel="Análisis de Sistemas" itemValue="1"/>
-                                <f:selectItem itemLabel="Producción Agraria" itemValue="2"/>
+                                <f:selectItems value="#{registrosController.lstCbCarreras}" var="car" itemValue="#{car.codCarReg}" itemLabel="#{car.nomCarReg}"/>
+                                <p:ajax event="change" update="cbCursos" listener="#{registrosController.listaCbCurso()}" />
                             </p:selectOneMenu>
 
                             <p:selectOneMenu value="#{registrosController.secc}" style="width: 80px">
@@ -34,25 +34,22 @@
                                 <f:selectItem itemLabel="C" itemValue="C"/>
                             </p:selectOneMenu>
 
-                            <p:selectOneMenu value="#{registrosController.reg.codCurReg}" style="width: 150px">
+                            <p:selectOneMenu value="#{registrosController.reg.codCurReg}" id="cbCursos" style="width: 150px">
                                 <f:selectItem itemLabel="Seleccione Curso:" noSelectionOption="true"/>
-                                <f:selectItem itemLabel="Algoritmos" itemValue="1"/>
-                                <f:selectItem itemLabel="Matematicas" itemValue="2"/>
-                                <f:selectItem itemLabel="Soporte Tecnico" itemValue="3"/>
-                                <f:selectItem itemLabel="Ofimatica" itemValue="4"/>
-                                <f:selectItem itemLabel="Comunicacion" itemValue="5"/>
-                                <f:selectItem itemLabel="Biologia" itemValue="6"/>
-                                <f:selectItem itemLabel="Quimica" itemValue="7"/>
+                                <f:selectItems value="#{registrosController.lstCbCursos}" var="cur" itemValue="#{cur.codCurReg}" itemLabel="#{cur.nomCurReg}"/>
                             </p:selectOneMenu>
 
+                            <p:calendar navigator="true" value="#{registrosController.reg.fechaReg}"/>
                             <p:commandButton value="consultar" actionListener="#{registrosController.consultar()}" update="formReg:tblReg"/>
 
                         </div>
 
-                        <div class="col s6 m6">
-                            <p:commandButton value="Agregar criterio"
-                                             onclick="PF('addCriterioDialog').show();"
-                                             style="float: right"/>
+                        <div class="col s5 m6">
+                            <p:commandButton value="Agregar criterio"                                             
+                                             oncomplete="PF('addCriterioDialog').show();"
+                                             style="float: right"
+                                             update="tblReg"/>
+
                             <p:commandButton value="Ver registros" 
                                              onclick="PF('viewRegDialog').show();"
                                              style="float: right"/>
@@ -80,7 +77,7 @@
                             </p:cellEditor>
                         </p:column>
 
-                        <p:column headerText="Criterio" style="width: 10%">
+                        <p:column rendered="#{registrosController.criterio}" headerText="#{registrosController.reg.nomCriterio}" style="width: 10%">
                             <p:cellEditor>
                                 <f:facet name="output"><center><p:outputLabel value="#{reg.notasReg}"/></center></f:facet>
                                 <f:facet name="input">
@@ -93,37 +90,31 @@
                     <p:dialog header="Agregar Criterio" widgetVar="addCriterioDialog" id="addCriterioDlg">
                         <h:panelGrid columns="1" cellpadding="5">
                             <p:outputLabel value="Nombre del criterio"/>
-                            <p:inputText />
+                            <p:inputText value="#{registrosController.reg.nomCriterio}"/>
                         </h:panelGrid>
                         <p:separator/>
-                        <p:commandButton value="Agregar"/>
+                        <p:commandButton value="Agregar" actionListener="#{registrosController.addCriterio()}" oncomplete="handleSubmit(args,'addCriterioDialog');" update="tblReg"/>
                         <p:commandButton value="Cancelar"/>
                     </p:dialog>
 
-                    <p:dialog header="Registros Anteriores" widgetVar="viewRegDialog" id="viewRegDlg">
+                    <p:dialog header="Ver Registros" widgetVar="viewRegDialog" id="viewRegDlg">
                         <h:panelGrid columns="2">
-                            <p:selectOneMenu>
-                                <f:selectItem itemLabel="Selecciona Carrera:" noSelectionOption="true"/>
-                                <f:selectItem itemLabel="Análisis de Sistemas" itemValue="1"/>
-                                <f:selectItem itemLabel="Producción Agraria" itemValue="2"/>
+                            <p:selectOneMenu value="#{registrosController.codCar2}" style="width: 150px">
+                                <f:selectItem itemLabel="Seleccione Carrera" noSelectionOption="true"/>
+                                <f:selectItems value="#{registrosController.lstCbCarreras}" var="car" itemValue="#{car.codCarReg}" itemLabel="#{car.nomCarReg}"/>
+                                <p:ajax event="change" update="cbCursosView" listener="#{registrosController.listaCbCurso2()}" />
                             </p:selectOneMenu>
 
-                            <p:selectOneMenu>
-                                <f:selectItem itemLabel="Selecciona Sección:" noSelectionOption="true"/>
+                            <p:selectOneMenu value="#{registrosController.secc2}" style="width: 80px">
+                                <f:selectItem itemLabel="Sección:" noSelectionOption="true"/>
                                 <f:selectItem itemLabel="A" itemValue="A"/>
                                 <f:selectItem itemLabel="B" itemValue="B"/>
                                 <f:selectItem itemLabel="C" itemValue="C"/>
                             </p:selectOneMenu>
 
-                            <p:selectOneMenu>
-                                <f:selectItem itemLabel="Selecciona Curso:" noSelectionOption="true"/>
-                                <f:selectItem itemLabel="Algoritmos" itemValue="1"/>
-                                <f:selectItem itemLabel="Matematicas" itemValue="2"/>
-                                <f:selectItem itemLabel="Soporte Tecnico" itemValue="3"/>
-                                <f:selectItem itemLabel="Ofimatica" itemValue="4"/>
-                                <f:selectItem itemLabel="Comunicacion" itemValue="5"/>
-                                <f:selectItem itemLabel="Biologia" itemValue="6"/>
-                                <f:selectItem itemLabel="Quimica" itemValue="7"/>
+                            <p:selectOneMenu value="#{registrosController.reg.codCurReg}" id="cbCursosView" style="width: 150px">
+                                <f:selectItem itemLabel="Seleccione Curso:" noSelectionOption="true"/>
+                                <f:selectItems value="#{registrosController.lstCbCursos}" var="cur" itemValue="#{cur.codCurReg}" itemLabel="#{cur.nomCurReg}"/>
                             </p:selectOneMenu>
 
                             <p:calendar placeholder="Fecha"/>
