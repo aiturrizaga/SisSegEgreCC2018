@@ -10,7 +10,7 @@ public class Registros {
     private String nomCarReg;
     private String seccionReg;
     
-    private String asisReg;
+    private String asisReg = "A";
     private String notasReg;
     private String fechaReg;
     private String nomCriterio;
