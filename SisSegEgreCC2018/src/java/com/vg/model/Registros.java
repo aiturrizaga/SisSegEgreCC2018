@@ -2,23 +2,45 @@ package com.vg.model;
 
 public class Registros {
 
-    private String numOrdenReg;//numero de orden del alumno
-    private String codTrazReg;//si
-    private String codPerReg;
-    private String nomPerReg;
-    private String codCarReg;//si
-    private String nomCarReg;//si
-    private String seccionReg;
+    private String numOrdenReg, codTrazReg, notasReg, fechaReg, nomCriterio, nomPerReg, seccionReg;
+    private String asisReg = "A";
+    private String codCarReg, nomCarReg, codCurReg, nomCurReg;
     
-    private String asisReg = "A";//si
-    private String notasReg;//si
-    private String fechaReg;//si
-    private String nomCriterio;
-    
-    private String codCurReg;//si
-    private String nomCurReg;//si
+    private String numOrdenView, nomPerView, asisView;
 
-    
+
+    public String getNumOrdenView() {
+        return numOrdenView;
+    }
+
+    public void setNumOrdenView(String numOrdenView) {
+        this.numOrdenView = numOrdenView;
+    }
+
+    public String getNomPerView() {
+        return nomPerView;
+    }
+
+    public void setNomPerView(String nomPerView) {
+        this.nomPerView = nomPerView;
+    }
+
+    public String getAsisView() {
+        return asisView;
+    }
+
+    public void setAsisView(String asisView) {
+        this.asisView = asisView;
+    }
+
+    public String getNomPerReg() {
+        return nomPerReg;
+    }
+
+    public void setNomPerReg(String nomPerReg) {
+        this.nomPerReg = nomPerReg;
+    }
+
     public String getNomCriterio() {
         return nomCriterio;
     }
@@ -81,22 +103,6 @@ public class Registros {
 
     public void setCodTrazReg(String codTrazReg) {
         this.codTrazReg = codTrazReg;
-    }
-
-    public String getCodPerReg() {
-        return codPerReg;
-    }
-
-    public void setCodPerReg(String codPerReg) {
-        this.codPerReg = codPerReg;
-    }
-
-    public String getNomPerReg() {
-        return nomPerReg;
-    }
-
-    public void setNomPerReg(String nomPerReg) {
-        this.nomPerReg = nomPerReg;
     }
 
     public String getCodCarReg() {

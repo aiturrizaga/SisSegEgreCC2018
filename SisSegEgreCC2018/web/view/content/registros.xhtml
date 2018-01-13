@@ -20,7 +20,6 @@
                 <h:form id="formReg">
                     <div class="row">
                         <div class="col s7 m6">
-
                             <p:selectOneMenu value="#{registrosController.codCar}" style="width: 150px">
                                 <f:selectItem itemLabel="Seleccione Carrera" noSelectionOption="true"/>
                                 <f:selectItems value="#{registrosController.lstCbCarreras}" var="car" itemValue="#{car.codCarReg}" itemLabel="#{car.nomCarReg}"/>
@@ -39,10 +38,9 @@
                                 <f:selectItems value="#{registrosController.lstCbCursos}" var="cur" itemValue="#{cur.codCurReg}" itemLabel="#{cur.nomCurReg}"/>
                             </p:selectOneMenu>
 
-                            <p:calendar navigator="true" value="#{registrosController.reg.fechaReg}" pattern="dd/MM/yyyy"/>
-                            <p:commandButton value="consultar" actionListener="#{registrosController.consultar()}" update="formReg:tblReg"/>
+                            <p:calendar navigator="true" value="#{registrosController.fecha3}" pattern="dd/MM/yyyy"/>
+                            <p:commandButton value="consultar" actionListener="#{registrosController.consultarReg()}" update="formReg:tblReg"/>
                             <p:commandButton value="Registrar" actionListener="#{registrosController.addRegistros()}" update="formReg:tblReg"/>
-
                         </div>
 
                         <div class="col s5 m6">
@@ -50,6 +48,9 @@
                                              oncomplete="PF('addCriterioDialog').show();"
                                              style="float: right"
                                              update="tblReg"/>
+
+                            <p:commandButton value="Eliminar criterio"
+                                             style="float: right"/>
 
                             <p:commandButton value="Ver registros" 
                                              onclick="PF('viewRegDialog').show();"
@@ -98,8 +99,8 @@
                         <p:commandButton value="Cancelar"/>
                     </p:dialog>
 
-                    <p:dialog header="Ver Registros" widgetVar="viewRegDialog" id="viewRegDlg">
-                        <h:panelGrid columns="2">
+                    <p:dialog header="Ver Registros" widgetVar="viewRegDialog" id="viewRegDlg" resizable="false" width="850" height="400">
+                        <h:panelGrid columns="5">
                             <p:selectOneMenu value="#{registrosController.codCar2}" style="width: 150px">
                                 <f:selectItem itemLabel="Seleccione Carrera" noSelectionOption="true"/>
                                 <f:selectItems value="#{registrosController.lstCbCarreras}" var="car" itemValue="#{car.codCarReg}" itemLabel="#{car.nomCarReg}"/>
@@ -113,16 +114,29 @@
                                 <f:selectItem itemLabel="C" itemValue="C"/>
                             </p:selectOneMenu>
 
-                            <p:selectOneMenu value="#{registrosController.reg.codCurReg}" id="cbCursosView" style="width: 150px">
+                            <p:selectOneMenu value="#{registrosController.curso2}" id="cbCursosView" style="width: 150px">
                                 <f:selectItem itemLabel="Seleccione Curso:" noSelectionOption="true"/>
                                 <f:selectItems value="#{registrosController.lstCbCursos}" var="cur" itemValue="#{cur.codCurReg}" itemLabel="#{cur.nomCurReg}"/>
                             </p:selectOneMenu>
 
-                            <p:calendar placeholder="Fecha"/>
+                            <p:calendar value="#{registrosController.fecha2}" placeholder="fecha" pattern="dd/MM/yyyy" navigator="true"/>
+                            
+                            <p:commandButton value="Consultar"
+                                         actionListener="#{registrosController.viewReg()}"
+                                         update="tblVista"/>
                         </h:panelGrid>
-                        <p:separator/>
-                        <p:commandButton value="Consultar"/>
-                        <p:commandButton value="Cancelar"/>
+                        
+                        <p:dataTable value="#{registrosController.lstRegistrosView}" var="vista" id="tblVista">
+                            <p:column headerText="N°" style="width: 5%">
+                                <p:outputLabel value="#{vista.numOrdenView}"/>
+                            </p:column>
+                            <p:column headerText="Estudiantes">
+                                <p:outputLabel value="#{vista.nomPerView}"/>
+                            </p:column>
+                            <p:column headerText="Asistencia" style="width: 10%">
+                                <p:outputLabel value="#{vista.asisView}"/>
+                            </p:column>
+                        </p:dataTable>
                     </p:dialog>
 
                 </h:form>

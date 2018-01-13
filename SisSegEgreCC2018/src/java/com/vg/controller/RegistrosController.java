@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 @Named(value = "registrosController")
 @SessionScoped
@@ -18,10 +20,13 @@ public class RegistrosController implements Serializable {
 
     Registros reg = new Registros();
     private List<Registros> lstRegistros;
+    private List<Registros> lstRegistrosView;
     private List<Registros> lstCbCarreras;
     private List<Registros> lstCbCursos;
     private String codCar, codCar2, nombrec;
-    private String secc, secc2, curso;
+    private Date fecha2;
+    private Date fecha3;
+    private String secc, secc2, curso, curso2;
     private boolean criterio = false;
 
     Date ahora = new Date();
@@ -30,7 +35,6 @@ public class RegistrosController implements Serializable {
     @PostConstruct
     public void init() {
         try {
-            reg.setFechaReg(formateador.format(ahora));
             setLstCbCarreras(null);
             setLstCbCursos(null);
             listaCbCarrera();
@@ -73,11 +77,22 @@ public class RegistrosController implements Serializable {
         }
     }
 
-    public void consultar() throws Exception {
+    public void consultarReg() throws Exception {
         RegistrosDao dao;
         try {
             dao = new RegistrosDao();
             lstRegistros = dao.consulta(codCar, secc);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public void viewReg() throws Exception {
+        RegistrosDao dao;
+        try {
+            dao = new RegistrosDao();
+            String date = formateador.format(getFecha2());
+            lstRegistrosView = dao.viewReg(codCar2, secc2, curso2, date);
         } catch (Exception e) {
             throw e;
         }
@@ -90,12 +105,46 @@ public class RegistrosController implements Serializable {
             for (Registros model : lstRegistros) {
                 model.setCodCurReg(getCurso());
                 model.setNomCriterio(getNombrec());
-                model.setFechaReg(formateador.format(ahora));
+                model.setFechaReg(formateador.format(getFecha3()));
                 dao.addRegistros(model);
             }
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "COMPLETADO", "Correctamente"));
         } catch (Exception e) {
             throw e;
         }
+    }
+
+    public Date getFecha2() {
+        return fecha2;
+    }
+    
+    public Date getFecha3() {
+        return fecha3;
+    }
+
+    //Getter and Setter
+    public void setFecha3(Date fecha3) {    
+        this.fecha3 = fecha3;
+    }
+
+    public void setFecha2(Date fecha2) {
+        this.fecha2 = fecha2;
+    }
+
+    public List<Registros> getLstRegistrosView() {
+        return lstRegistrosView;
+    }
+
+    public void setLstRegistrosView(List<Registros> lstRegistrosView) {
+        this.lstRegistrosView = lstRegistrosView;
+    }
+
+    public String getCurso2() {
+        return curso2;
+    }
+
+    public void setCurso2(String curso2) {
+        this.curso2 = curso2;
     }
 
     public String getNombrec() {
@@ -185,5 +234,4 @@ public class RegistrosController implements Serializable {
     public void setCriterio(boolean criterio) {
         this.criterio = criterio;
     }
-
 }
