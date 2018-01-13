@@ -28,6 +28,7 @@ public class RegistrosController implements Serializable {
     private Date fecha3;
     private String secc, secc2, curso, curso2;
     private boolean criterio = false;
+    private boolean buttonCriterio = true;
 
     Date ahora = new Date();
     SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
@@ -45,6 +46,18 @@ public class RegistrosController implements Serializable {
 
     public void addCriterio() {
         criterio = true;
+        ocultarAddCriterio();
+    }
+    
+    public void ocultarAddCriterio(){
+        buttonCriterio = false;
+    }
+    
+    public void borrarCriterio(){
+        setNombrec(null);
+        reg.setNotasReg(null);
+        buttonCriterio = true;
+        criterio = false;
     }
 
     public void listaCbCarrera() throws Exception {
@@ -123,6 +136,15 @@ public class RegistrosController implements Serializable {
     }
 
     //Getter and Setter
+
+    public boolean isButtonCriterio() {
+        return buttonCriterio;
+    }
+
+    public void setButtonCriterio(boolean buttonCriterio) {
+        this.buttonCriterio = buttonCriterio;
+    }
+    
     public void setFecha3(Date fecha3) {    
         this.fecha3 = fecha3;
     }

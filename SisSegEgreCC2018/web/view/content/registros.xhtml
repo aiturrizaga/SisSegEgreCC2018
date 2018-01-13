@@ -38,7 +38,7 @@
                                 <f:selectItems value="#{registrosController.lstCbCursos}" var="cur" itemValue="#{cur.codCurReg}" itemLabel="#{cur.nomCurReg}"/>
                             </p:selectOneMenu>
 
-                            <p:calendar navigator="true" value="#{registrosController.fecha3}" pattern="dd/MM/yyyy"/>
+                            <p:calendar placeholder="Fecha" navigator="true" value="#{registrosController.fecha3}" pattern="dd/MM/yyyy"/>
                             <p:commandButton value="consultar" actionListener="#{registrosController.consultarReg()}" update="formReg:tblReg"/>
                             <p:commandButton value="Registrar" actionListener="#{registrosController.addRegistros()}" update="formReg:tblReg"/>
                         </div>
@@ -47,10 +47,16 @@
                             <p:commandButton value="Agregar criterio"                                             
                                              oncomplete="PF('addCriterioDialog').show();"
                                              style="float: right"
-                                             update="tblReg"/>
+                                             update="tblReg"
+                                             id="buttonAddCri"
+                                             rendered="#{registrosController.buttonCriterio}"/>
 
                             <p:commandButton value="Eliminar criterio"
-                                             style="float: right"/>
+                                             style="float: right"
+                                             id="buttonDelCri"
+                                             actionListener="#{registrosController.borrarCriterio()}"
+                                             update="formReg"
+                                             rendered="#{!registrosController.buttonCriterio}"/>
 
                             <p:commandButton value="Ver registros" 
                                              onclick="PF('viewRegDialog').show();"
@@ -95,7 +101,8 @@
                             <p:inputText value="#{registrosController.nombrec}"/>
                         </h:panelGrid>
                         <p:separator/>
-                        <p:commandButton value="Agregar" actionListener="#{registrosController.addCriterio()}" oncomplete="handleSubmit(args,'addCriterioDialog');" update="tblReg"/>
+                        <p:commandButton value="Agregar" actionListener="#{registrosController.addCriterio()}" 
+                                         oncomplete="handleSubmit(args,'addCriterioDialog');" update="formReg tblReg"/>
                         <p:commandButton value="Cancelar"/>
                     </p:dialog>
 
