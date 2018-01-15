@@ -2,13 +2,54 @@ package com.vg.model;
 
 public class Registros {
 
-    private String numOrdenReg, codTrazReg, notasReg, fechaReg, nomCriterio, nomPerReg, seccionReg;
+    private String numOrdenReg, codTrazReg, notasReg = "0", fechaReg, nomCriterio, nomPerReg, seccionReg;
     private String asisReg = "A";
     private String codCarReg, nomCarReg, codCurReg, nomCurReg;
     
-    private String numOrdenView, nomPerView, asisView;
+    private String numOrdenView, nomPerView, asisView,notaView;
+     private String NOMBRES,NOTAS,FECHA,ASISTENCIA;
 
+    public String getNotaView() {
+        return notaView;
+    }
 
+    public void setNotaView(String notaView) {
+        this.notaView = notaView;
+    }
+     
+    public String getNOMBRES() {
+        return NOMBRES;
+    }
+
+    public void setNOMBRES(String NOMBRES) {
+        this.NOMBRES = NOMBRES;
+    }
+
+    public String getNOTAS() {
+        return NOTAS;
+    }
+
+    public void setNOTAS(String NOTAS) {
+        this.NOTAS = NOTAS;
+    }
+
+    public String getFECHA() {
+        return FECHA;
+    }
+
+    public void setFECHA(String FECHA) {
+        this.FECHA = FECHA;
+    }
+
+    public String getASISTENCIA() {
+        return ASISTENCIA;
+    }
+
+    public void setASISTENCIA(String ASISTENCIA) {
+        this.ASISTENCIA = ASISTENCIA;
+    }
+
+     
     public String getNumOrdenView() {
         return numOrdenView;
     }

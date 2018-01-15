@@ -23,12 +23,14 @@ public class RegistrosController implements Serializable {
     private List<Registros> lstRegistrosView;
     private List<Registros> lstCbCarreras;
     private List<Registros> lstCbCursos;
+    private List<Registros> lstNuevo;
     private String codCar, codCar2, nombrec;
     private Date fecha2;
     private Date fecha3;
     private String secc, secc2, curso, curso2;
     private boolean criterio = false;
     private boolean buttonCriterio = true;
+    private String Fecha1;
 
     Date ahora = new Date();
     SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
@@ -39,11 +41,24 @@ public class RegistrosController implements Serializable {
             setLstCbCarreras(null);
             setLstCbCursos(null);
             listaCbCarrera();
+            listaNueva();
         } catch (Exception ex) {
             Logger.getLogger(RegistrosController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    
+    
+    public void listaNueva() throws Exception {
+        RegistrosDao dao;
+        try {
+            dao = new RegistrosDao();
+            lstNuevo = dao.listarCursos();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
     public void addCriterio() {
         criterio = true;
         ocultarAddCriterio();
@@ -134,8 +149,15 @@ public class RegistrosController implements Serializable {
     public Date getFecha3() {
         return fecha3;
     }
+    
+    public List<Registros> getLstNuevo() {
+        return lstNuevo;
+    }
 
     //Getter and Setter
+    public void setLstNuevo(List<Registros> lstNuevo) {    
+        this.lstNuevo = lstNuevo;
+    }
 
     public boolean isButtonCriterio() {
         return buttonCriterio;

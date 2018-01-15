@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class RegistrosDao extends Dao {
@@ -106,6 +105,7 @@ public class RegistrosDao extends Dao {
                 reg.setNumOrdenView(rs.getString("ORDEN"));
                 reg.setNomPerView(rs.getString("NOMBRES"));
                 reg.setAsisView(rs.getString("ASISTENCIA"));
+                reg.setNotaView(rs.getString("NOTA"));
                 lista.add(reg);
             }
         } catch (SQLException e) {
@@ -166,5 +166,54 @@ public class RegistrosDao extends Dao {
         } catch (SQLException e) {
             throw e;
         }
+    }
+
+    public List<Registros> listarCursos() throws Exception {
+        List<Registros> lista;
+        ResultSet rs;
+        try {
+            this.Conexion();
+            String sql = "SELECT \n"
+                    + "                                             CONCAT(CONCAT(PERSONATEMP.APE_EST,', '),PERSONATEMP.NOM_EST) AS NOMBRES,    \n"
+                    + "                                             CARRERAS.NOM_CAR AS CARRERA,    \n"
+                    + "                                             CURSOS.NOM_CURSO  AS CURSO,    \n"
+                    + "                                             TRAZABILIDAD.SECCION AS SECCION,    \n"
+                    + "                                               CASE    \n"
+                    + "                                                   WHEN REGISTROS.ASIS_CURSO = 'A' THEN 'ASISTIO'    \n"
+                    + "                                                   WHEN REGISTROS.ASIS_CURSO = 'F' THEN 'FALTO'    \n"
+                    + "                                               END AS ASISTENCIA,    \n"
+                    + "                                             REGISTROS.NOTA_CURSO AS NOTA,    \n"
+                    + "                                             REGISTROS.FECHA_CURSO AS FECHA,    \n"
+                    + "                                             REGISTROS.NOM_CONTROL AS NOMCONTROL    \n"
+                    + "                                       FROM REGISTROS    \n"
+                    + "                                            INNER JOIN TRAZABILIDAD ON    \n"
+                    + "                                               TRAZABILIDAD.COD_TRAZ = REGISTROS.COD_TRAZ     \n"
+                    + "                                            INNER JOIN CURSOS ON     \n"
+                    + "                                               REGISTROS.COD_CURSO = CURSOS.COD_CURSO    \n"
+                    + "                                            INNER JOIN PERSONATEMP ON    \n"
+                    + "                                               TRAZABILIDAD.COD_EST = PERSONATEMP.COD_EST    \n"
+                    + "                                            INNER JOIN CARRERAS ON    \n"
+                    + "                                               TRAZABILIDAD.COD_CAR = CARRERAS.COD_CAR    \n"
+                    + "                                       WHERE     \n"
+                    + "                                           CARRERAS.COD_CAR = '1' AND    \n"
+                    + "                                           CURSOS.COD_CURSO = '1' AND  \n"
+                    + "                                           REGISTROS.FECHA_CURSO = '15/01/18' AND\n"
+                    + "                                           TRAZABILIDAD.SECCION = 'A'  ORDER BY NOMBRES";
+            PreparedStatement ps = this.getCn().prepareStatement(sql);
+            rs = ps.executeQuery();
+            lista = new ArrayList();
+            Registros alum;
+            while (rs.next()) {
+                alum = new Registros();
+                alum.setNOMBRES(rs.getString("NOMBRES"));
+                alum.setFECHA(rs.getString("FECHA"));
+                alum.setASISTENCIA(rs.getString("ASISTENCIA"));
+                alum.setNOTAS(rs.getString("NOTA"));
+                lista.add(alum);
+            }
+        } catch (SQLException e) {
+            throw e;
+        }
+        return lista;
     }
 }
