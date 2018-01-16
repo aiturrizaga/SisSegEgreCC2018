@@ -38,6 +38,7 @@ public class ColegiosDao extends Dao {
                 emp = new Colegios();
                 emp.setCodigomodular(rs.getString("COD_COL"));
                 emp.setColegio(rs.getString("NOM_COL"));
+                emp.setUbigeo(rs.getString("UBIGEO"));
                 lista.add(emp);
             }
         } catch (SQLException e) {
@@ -67,11 +68,12 @@ public class ColegiosDao extends Dao {
     public void editarColegio(Colegios col) throws Exception {
         try {
             this.Conexion();
-            String sql = "BEGIN UPDATECOLEGIO(?, ?, ?); END;";
+            String sql = "BEGIN UPDATECOLEGIO(?, ?, ?, ?); END;";
             PreparedStatement ps = this.getCn().prepareStatement(sql);
             ps.setString(1, col.getCod_modular());
             ps.setString(2, col.getNom_colegio());
             ps.setString(3, col.getEst_col());
+            ps.setString(4, col.getCodUbigeo());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw e;

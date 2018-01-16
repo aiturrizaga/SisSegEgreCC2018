@@ -6,11 +6,19 @@ public class Colegios {
     private String nom_colegio;
     private String est_col = "A";
     
-    private String codigomodular,colegio;
+    private String codigomodular,colegio,ubigeo;
     
     private String countColegio;
     private String codUbigeo;
     private String nomUbigeo;
+
+    public String getUbigeo() {
+        return ubigeo;
+    }
+
+    public void setUbigeo(String ubigeo) {
+        this.ubigeo = ubigeo;
+    }
 
     public String getCodUbigeo() {
         return codUbigeo;

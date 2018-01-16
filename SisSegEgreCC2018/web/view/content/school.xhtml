@@ -75,6 +75,9 @@
                         <p:column headerText="Nombre" filterBy="#{col.colegio}" filterMatchMode="contains">
                             <p:outputLabel value="#{col.colegio}"/>
                         </p:column>
+                        <p:column headerText="Ubigeo" filterBy="#{col.ubigeo}" filterMatchMode="contains">
+                            <p:outputLabel value="#{col.ubigeo}"/>
+                        </p:column>
                     </p:dataTable>
                     <p:contextMenu for="tblCol">
                         <p:menuitem value="Editar" 
@@ -93,21 +96,29 @@
 
                     <h:form id="editform">
 
-                        <p:panelGrid id="panel">
+                        <p:panelGrid columns="1" id="panel">
 
                             <p:outputLabel value="Colegio:"/>
-                            <p:inputText value="#{colegiosController.selected.nom_colegio}"/>
-                            <p:commandButton value="Actualizar"
-                                             icon="ui-icon-check"
-                                             actionListener="#{colegiosController.editar()}"
-                                             oncomplete="handleSubmit(args,'editarcolegio');"
-                                             update="editform :frm:msg :frm:tblCol"/>
+                            <p:inputText value="#{colegiosController.selected.nom_colegio}" style="width: 100%"/>
 
-                            <p:commandButton value="Cancelar"
-                                             icon="ui-icon-close" 
-                                             onclick="PF('editarcolegio').hide()"
-                                             immediate="true"/>
+                            <p:outputLabel value="Ubigeo:"/>
+                            <p:selectOneMenu id="ubiCol" value="#{colegiosController.selected.codUbigeo}" panelStyle="width:400px"
+                                             effect="fade" var="t" style="width:100%" filter="true" filterMatchMode="contains">
+                                <f:selectItem itemLabel="Seleccione Ubigeo" noSelectionOption="true"/>
+                                <f:selectItems value="#{colegiosController.lstUbiCol}" var="ubi" itemValue="#{ubi.codUbigeo}" itemLabel="#{ubi.nomUbigeo}"/>
+
+                            </p:selectOneMenu>
                         </p:panelGrid>
+                        <p:commandButton value="Actualizar"
+                                         icon="ui-icon-check"
+                                         actionListener="#{colegiosController.editar()}"
+                                         oncomplete="handleSubmit(args,'editarcolegio');"
+                                         update="editform :frm:msg :frm:tblCol"/>
+
+                        <p:commandButton value="Cancelar"
+                                         icon="ui-icon-close" 
+                                         onclick="PF('editarcolegio').hide()"
+                                         immediate="true"/>
                     </h:form>
 
                 </p:dialog>
