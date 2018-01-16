@@ -9,9 +9,24 @@ public class Colegios {
     private String codigomodular,colegio;
     
     private String countColegio;
-    
+    private String codUbigeo;
+    private String nomUbigeo;
 
-    
+    public String getCodUbigeo() {
+        return codUbigeo;
+    }
+
+    public void setCodUbigeo(String codUbigeo) {
+        this.codUbigeo = codUbigeo;
+    }
+
+    public String getNomUbigeo() {
+        return nomUbigeo;
+    }
+
+    public void setNomUbigeo(String nomUbigeo) {
+        this.nomUbigeo = nomUbigeo;
+    }
     
     public String getCountColegio() {
         return countColegio;

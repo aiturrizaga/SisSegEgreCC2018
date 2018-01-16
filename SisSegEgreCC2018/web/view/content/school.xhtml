@@ -26,13 +26,22 @@
                                     <div class="card-text">
                                         <h6>Agregar Colegios</h6>
                                         <div class="row">
-                                            <div class="input-field col s12 m5">
+                                            <div class="input-field col s12 m3">
                                                 <p:inputText type="number" id="txtCodMod" value="#{colegiosController.col.cod_modular}" maxlength="10"/>
                                                 <label for="txtCodMod">Codigo Modular</label>
                                             </div>
-                                            <div class="input-field col s12 m5">
+                                            <div class="input-field col s12 m3">
                                                 <p:inputText id="txtNomCol" value="#{colegiosController.col.nom_colegio}"/>
                                                 <label for="txtNomCol">Nombre del Colegio</label>
+                                            </div>
+                                            <div class="col s12 m4">
+                                                <label for="ubiCol">Ubigeo del Colegio</label><br/><br/>
+                                                <p:selectOneMenu id="ubiCol" value="#{colegiosController.col.codUbigeo}" panelStyle="width:400px"
+                                                                 effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="contains">
+                                                    <f:selectItem itemLabel="Seleccione Ubigeo" noSelectionOption="true"/>
+                                                    <f:selectItems value="#{colegiosController.lstUbiCol}" var="ubi" itemValue="#{ubi.codUbigeo}" itemLabel="#{ubi.nomUbigeo}"/>
+
+                                                </p:selectOneMenu>
                                             </div>
                                             <div class="col s12 m2">
                                                 <p:commandButton value="Registrar" actionListener="#{colegiosController.agregarCol()}" update="tblCol"/>

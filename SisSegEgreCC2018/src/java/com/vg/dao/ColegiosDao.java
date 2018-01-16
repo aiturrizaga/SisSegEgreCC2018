@@ -12,11 +12,12 @@ public class ColegiosDao extends Dao {
     public void agregarCol(Colegios col) throws Exception {
         this.Conexion();
         try {
-            String sql = "INSERT INTO COLEGIOS VALUES (?,?,?)";
+            String sql = "INSERT INTO COLEGIOS VALUES (?,?,?,?)";
             PreparedStatement ps = this.getCn().prepareStatement(sql);
             ps.setString(1, col.getCod_modular());
             ps.setString(2, col.getNom_colegio());
             ps.setString(3, col.getEst_col());
+            ps.setString(4, col.getCodUbigeo());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -90,5 +91,23 @@ public class ColegiosDao extends Dao {
         }
     }
 
-    
+    public ArrayList<Colegios> listaUbigeo() throws Exception {
+        try {
+            ArrayList<Colegios> lista = new ArrayList<>();
+            ResultSet rs;
+            this.Conexion();
+            String sql = "SELECT UBIGEO,CONCAT(CONCAT(CONCAT(CONCAT(DPTO,','),PROV),','),DIST) AS NOMUBI FROM UBIGEO";
+            PreparedStatement ps = this.getCn().prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Colegios col = new Colegios();
+                col.setCodUbigeo(rs.getString("UBIGEO"));
+                col.setNomUbigeo(rs.getString("NOMUBI"));
+                lista.add(col);
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
 }

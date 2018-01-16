@@ -20,12 +20,14 @@ public class ColegiosController implements Serializable {
     Colegios col = new Colegios();
     private List<Colegios> lstColegios;
     private List<Colegios> lstColegios2;
+    private List<Colegios> lstUbiCol;
     
     private Colegios selected;
 
     @PostConstruct
     public void inicio() {
         try {
+            listaUbigeo();
             listarColegiosActivo();
             countColegio();
         } catch (Exception ex) {
@@ -95,8 +97,24 @@ public class ColegiosController implements Serializable {
         col.setCod_modular(null);
         col.setNom_colegio(null);
     }
-
     
+    public void listaUbigeo() throws Exception {
+        ColegiosDao dao;
+        try {
+            dao = new ColegiosDao();
+            setLstUbiCol(dao.listaUbigeo());
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public List<Colegios> getLstUbiCol() {
+        return lstUbiCol;
+    }
+
+    public void setLstUbiCol(List<Colegios> lstUbiCol) {
+        this.lstUbiCol = lstUbiCol;
+    }
     
     public List<Colegios> getLstColegios2() {
         return lstColegios2;
