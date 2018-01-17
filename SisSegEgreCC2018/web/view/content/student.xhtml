@@ -118,22 +118,22 @@
                                     <span class="card-title">Datos para Beca 18</span>
                                     <div class="row">
                                         <div class="input-field col s12 m6">
-                                            <p:inputText id="txtN1" type="number" value="#{alumnosController.alum.nota1}"/>
-                                            <label for="txtN1">Nota 3°</label>
+                                            <p:inputNumber id="txtN1" value="#{alumnosController.alum.nota1}" minValue="0" maxValue="20" placeholder="Nota 1"/>
+                                            
                                         </div>
                                         <div class="input-field col s12 m6">
-                                            <p:inputText id="txtN2" type="number" value="#{alumnosController.alum.nota2}"/>
-                                            <label for="txtN2">Nota 4°</label>
+                                            <p:inputNumber id="txtN2" value="#{alumnosController.alum.nota2}" minValue="0" maxValue="20" placeholder="Nota 2"/>
+                                            
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="input-field col s12 m6">
-                                            <p:inputText id="txtN3" type="number" value="#{alumnosController.alum.nota3}"/>
-                                            <label for="txtN3">Nota 5°</label>
+                                            <p:inputNumber id="txtN3" value="#{alumnosController.alum.nota3}" minValue="0" maxValue="20" placeholder="Nota 3"/>
+                                            
                                         </div>
                                         <div class="input-field col s12 m6">
-                                            <p:inputText id="txtNvg" type="number" value="#{alumnosController.alum.nota4}"/>
-                                            <label for="txtNvg">Nota VG</label>
+                                            <p:inputNumber id="txtNvg" value="#{alumnosController.alum.nota4}" minValue="0" maxValue="20" placeholder="Nota VG"/>
+                                            
                                         </div>
                                     </div>
                                     <div class="row">

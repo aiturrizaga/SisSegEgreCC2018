@@ -70,7 +70,7 @@ public class RegistrosController implements Serializable {
     
     public void borrarCriterio(){
         setNombrec(null);
-        reg.setNotasReg(null);
+        reg.setNotasReg("");
         buttonCriterio = true;
         criterio = false;
     }
