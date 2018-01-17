@@ -4,7 +4,16 @@ public class Colegios {
     
     private String cod_modular;
     private String nom_colegio;
-    private String est_col = "A";
+    private String est_col = "A",DISTRITO;
+
+    public String getDISTRITO() {
+        return DISTRITO;
+    }
+
+    public void setDISTRITO(String DISTRITO) {
+        this.DISTRITO = DISTRITO;
+    }
+    
     
     private String codigomodular,colegio,ubigeo;
     

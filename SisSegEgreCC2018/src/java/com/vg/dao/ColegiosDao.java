@@ -29,16 +29,22 @@ public class ColegiosDao extends Dao {
         ResultSet rs;
         try {
             this.Conexion();
-            String sql = "SELECT * FROM  COLEGIOS WHERE EST_COL = 'A'";
+            String sql = "SELECT COLEGIOS.COD_COL AS CODIGO,\n"
+                    + "COLEGIOS.NOM_COL AS COLEGIO ,\n"
+                    + "COLEGIOS.EST_COL AS ESTADO,\n"
+                    + "UBIGEO.UBIGEO AS UBIGEO,\n"
+                    + "CONCAT(CONCAT(CONCAT(CONCAT(UBIGEO.DPTO,','),UBIGEO.PROV),','),UBIGEO.DIST) AS DISTRITO\n"
+                    + "FROM  COLEGIOS INNER JOIN UBIGEO ON UBIGEO.UBIGEO = COLEGIOS.UBIGEO  WHERE EST_COL = 'A'";
             PreparedStatement ps = this.getCn().prepareCall(sql);
             rs = ps.executeQuery();
             lista = new ArrayList();
             Colegios emp;
             while (rs.next()) {
                 emp = new Colegios();
-                emp.setCodigomodular(rs.getString("COD_COL"));
-                emp.setColegio(rs.getString("NOM_COL"));
+                emp.setCodigomodular(rs.getString("CODIGO"));
+                emp.setColegio(rs.getString("COLEGIO"));
                 emp.setUbigeo(rs.getString("UBIGEO"));
+                emp.setDISTRITO(rs.getString("DISTRITO"));
                 lista.add(emp);
             }
         } catch (SQLException e) {
