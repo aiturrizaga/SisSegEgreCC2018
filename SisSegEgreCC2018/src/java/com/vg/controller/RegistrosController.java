@@ -137,6 +137,7 @@ public class RegistrosController implements Serializable {
                 dao.addRegistros(model);
             }
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "COMPLETADO", "Correctamente"));
+            lstRegistros = null;
         } catch (Exception e) {
             throw e;
         }

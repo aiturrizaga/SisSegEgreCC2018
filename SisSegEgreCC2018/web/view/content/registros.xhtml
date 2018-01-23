@@ -68,16 +68,16 @@
                                  var="reg" id="tblReg" editable="true"
                                  editMode="cell">
                         <p:column headerText="N°" style="width: 5%">
-                            <p:outputLabel value="#{reg.numOrdenReg}"/>
+                            <p:outputLabel value="#{reg.numOrdenReg}" style="color: #000"/>
                         </p:column>
                         <p:column headerText="Estudiantes">
-                            <p:outputLabel value="#{reg.nomPerReg}"/>
+                            <p:outputLabel value="#{reg.nomPerReg}" style="color: #000"/>
                         </p:column>
-                        <p:column headerText="Asistencia" style="width: 10%">
+                        <p:column headerText="Asistencia" style="width: 10%" >
                             <p:cellEditor>
-                                <f:facet name="output"><center><p:outputLabel value="#{reg.asisReg}"/></center></f:facet>
+                                <f:facet name="output"><center><p:outputLabel value="#{reg.asisReg}" style="color: #000"/></center></f:facet>
                                 <f:facet name="input">
-                                    <p:selectOneMenu value="#{reg.asisReg}" style="width: 100%">
+                                    <p:selectOneMenu value="#{reg.asisReg}" style="width: 100%; color: #000">
                                         <f:selectItem itemLabel="A" itemValue="A"/>
                                         <f:selectItem itemLabel="F" itemValue="F"/>
                                     </p:selectOneMenu>
