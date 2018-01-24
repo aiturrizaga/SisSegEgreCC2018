@@ -27,6 +27,8 @@
                                     <div class="row">
                                         <div class="col s12 m12">
                                             <p:autoComplete dropdown="true" maxResults="10"
+                                                            emptyMessage="No se encontro ningún registro"
+                                                            forceSelection="true"
                                                             placeholder="Nombre del colegio"
                                                             value="#{alumnosController.alum.cod_col}" 
                                                             completeMethod="#{alumnosController.completeTextCol}"
@@ -101,7 +103,9 @@
                                             <label for="txtCorreo">Email</label>
                                         </div>
                                         <div class="input-field col s12 m5">
-                                            <p:autoComplete dropdown="true" maxResults="16" 
+                                            <p:autoComplete dropdown="true" maxResults="16"
+                                                            emptyMessage="No se encontro ningún registro"
+                                                            forceSelection="true"
                                                             placeholder="Disrito" value="#{alumnosController.alum.ubigeo_est}"
                                                             completeMethod="#{alumnosController.completeTextUbi}"
                                                             style="width: 90%"/>

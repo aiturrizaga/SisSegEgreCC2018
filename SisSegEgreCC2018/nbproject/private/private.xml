@@ -7,6 +7,10 @@
             <file>file:/C:/Users/PC/Documents/NetBeansProjects/SisSegEgreCC2018/SisSegEgreCC2018/src/java/com/vg/controller/TrazabilidadController.java</file>
             <file>file:/C:/Users/PC/Documents/NetBeansProjects/SisSegEgreCC2018/SisSegEgreCC2018/src/java/com/vg/dao/Dao.java</file>
             <file>file:/C:/Users/PC/Documents/NetBeansProjects/SisSegEgreCC2018/SisSegEgreCC2018/web/view/content/Historial.xhtml</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/SisSegEgreCC2018/SisSegEgreCC2018/src/java/com/vg/model/Registros.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/SisSegEgreCC2018/SisSegEgreCC2018/src/java/com/vg/dao/RegistrosDao.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/SisSegEgreCC2018/SisSegEgreCC2018/web/view/content/registros.xhtml</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/SisSegEgreCC2018/SisSegEgreCC2018/src/java/com/vg/controller/RegistrosController.java</file>
         </group>
     </open-files>
 </project-private>

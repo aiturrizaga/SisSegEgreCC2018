@@ -42,7 +42,9 @@
                                 <div class="row">
                                     <div class="col s12 m6">
                                         <p:autoComplete dropdown="true" maxResults="10"
+                                                        emptyMessage="No se encontro ningún registro"
                                                         placeholder="Nombre del colegio"
+                                                        forceSelection="true"
                                                         value="#{alumnosController.alum.cod_col}" 
                                                         completeMethod="#{alumnosController.completeTextCol}"
                                                         style="width: 90%" id="autocompleteColegios" maxlength="15" required="true" requiredMessage="Ingresa tu colegio."/>
@@ -116,6 +118,7 @@
                                     </div>
                                     <div class="input-field col s12 m5">
                                         <p:autoComplete dropdown="true" maxResults="16" 
+                                                        emptyMessage="No se encontro ningún registro"
                                                         placeholder="Disrito" value="#{alumnosController.alum.ubigeo_est}"
                                                         completeMethod="#{alumnosController.completeTextUbi}"
                                                         style="width: 90%" maxlength="15" required="true" requiredMessage="Ingresa tu distrito."/>

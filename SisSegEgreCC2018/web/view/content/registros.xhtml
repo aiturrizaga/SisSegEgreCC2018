@@ -127,27 +127,40 @@
                             </p:selectOneMenu>
 
                             <p:calendar value="#{registrosController.fecha2}" placeholder="fecha" pattern="dd/MM/yyyy" navigator="true"/>
-                            
+
                             <p:commandButton value="Consultar"
-                                         actionListener="#{registrosController.viewReg()}"
-                                         update="tblVista"/>
+                                             actionListener="#{registrosController.viewReg()}"
+                                             update="tblVista"/>
                         </h:panelGrid>
-                        
-                        <p:dataTable value="#{registrosController.lstRegistrosView}" var="vista" id="tblVista">
+
+                        <p:dataTable value="#{registrosController.lstRegistrosView}" var="vista" id="tblVista"
+                                     editable="true" editMode="cell" widgetVar="cellData" selection="#{registrosController.selected}" selectionMode="single" rowKey="#{vista.codRegView}">
+
+                            <p:ajax event="cellEdit" listener="#{registrosController.updateRegistro()}" update="tblVista" />
                             <p:column headerText="N°" style="width: 5%">
-                                <p:outputLabel value="#{vista.numOrdenView}"/>
+                                <p:outputLabel value="#{vista.numOrdenView}" style="color: #000"/>
                             </p:column>
-                            <p:column headerText="Codigo" style="width: 5%">
-                                <p:outputLabel value="#{vista.codRegView}"/>
-                            </p:column>
+                            <ui:remove>
+                                <p:column headerText="Codigo" style="width: 5%">
+                                    <p:outputLabel value="#{vista.codRegView}" style="color: #000"/>
+                                </p:column>
+                            </ui:remove>
                             <p:column headerText="Estudiantes">
-                                <p:outputLabel value="#{vista.nomPerView}"/>
+                                <p:outputLabel value="#{vista.nomPerView}" style="color: #000"/>
                             </p:column>
                             <p:column headerText="Asistencia" style="width: 10%">
-                                <p:outputLabel value="#{vista.asisView}"/>
+                                <p:cellEditor>
+                                    <f:facet name="output"><center><p:outputLabel value="#{vista.asisView}" style="color: #000"/></center></f:facet>
+                                    <f:facet name="input">
+                                        <p:selectOneMenu value="#{vista.asisView}" style="width: 100%; color: #000">
+                                            <f:selectItem itemLabel="A" itemValue="A"/>
+                                            <f:selectItem itemLabel="F" itemValue="F"/>
+                                        </p:selectOneMenu>
+                                    </f:facet>
+                                </p:cellEditor>
                             </p:column>
-                            <p:column headerText="Notas" style="width: 10%">
-                                <p:outputLabel value="#{vista.notaView}"/>
+                            <p:column headerText="Notas" style="width: 10%" rendered="#{vista.notaView != 0}">
+                                <p:outputLabel value="#{vista.notaView}" style="color: #000" rendered="#{vista.notaView != 0}"/>
                             </p:column>
                         </p:dataTable>
                     </p:dialog>

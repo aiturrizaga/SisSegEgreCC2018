@@ -171,14 +171,14 @@ public class RegistrosDao extends Dao {
         }
     }
     
-    public void updateRegistro() throws Exception{
+    public void updateRegistro(Registros reg) throws Exception{
         try {
             this.Conexion();
             String sql = "UPDATE REGISTROS SET ASIS_CURSO = ?,NOTA_CURSO = ? WHERE COD_REG = ?";
             PreparedStatement ps = this.getCn().prepareStatement(sql);
-            ps.setString(1, sql);
-            ps.setString(2, sql);
-            ps.setString(3, sql);
+            ps.setString(1, reg.getAsisView());
+            ps.setString(2, reg.getNotaView());
+            ps.setString(3, reg.getCodRegView());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw e;

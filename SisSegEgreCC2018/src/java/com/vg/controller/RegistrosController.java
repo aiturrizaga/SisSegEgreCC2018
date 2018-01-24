@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -31,6 +32,7 @@ public class RegistrosController implements Serializable {
     private boolean criterio = false;
     private boolean buttonCriterio = true;
     private String Fecha1;
+    private Registros selected;
 
     Date ahora = new Date();
     SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
@@ -143,6 +145,26 @@ public class RegistrosController implements Serializable {
         } catch (Exception e) {
             throw e;
         }
+    }
+    
+    public void updateRegistro() throws Exception{
+        RegistrosDao dao;
+        try {
+            dao = new RegistrosDao();
+            dao.updateRegistro(selected);
+            viewReg();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "ACTUALIZADO", "Correctamente"));
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public Registros getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Registros selected) {
+        this.selected = selected;
     }
 
     public Date getFecha2() {
