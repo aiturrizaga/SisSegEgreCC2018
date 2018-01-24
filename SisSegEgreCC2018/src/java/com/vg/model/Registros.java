@@ -6,7 +6,7 @@ public class Registros {
     private String asisReg = "A";
     private String codCarReg, nomCarReg, codCurReg, nomCurReg;
     
-    private String numOrdenView, nomPerView, asisView,notaView;
+    private String numOrdenView, nomPerView, asisView,notaView,codRegView;
      private String NOMBRES,NOTAS,FECHA,ASISTENCIA;
 
     public String getNotaView() {
@@ -15,6 +15,14 @@ public class Registros {
 
     public void setNotaView(String notaView) {
         this.notaView = notaView;
+    }
+
+    public String getCodRegView() {
+        return codRegView;
+    }
+
+    public void setCodRegView(String codRegView) {
+        this.codRegView = codRegView;
     }
      
     public String getNOMBRES() {

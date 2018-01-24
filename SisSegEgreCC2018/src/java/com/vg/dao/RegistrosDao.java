@@ -59,6 +59,7 @@ public class RegistrosDao extends Dao {
             String sql = "SELECT \n"
                     + "ROWNUM AS ORDEN,\n"
                     + "NOMBRES,\n"
+                    + "CODREG,\n"
                     + "CARRERA,\n"
                     + "CURSO,\n"
                     + "SECCION,\n"
@@ -76,6 +77,7 @@ public class RegistrosDao extends Dao {
                     + "    WHEN REGISTROS.ASIS_CURSO = 'F' THEN 'FALTO'\n"
                     + "END AS ASISTENCIA,\n"
                     + "REGISTROS.NOTA_CURSO AS NOTA,\n"
+                    + "REGISTROS.COD_REG AS CODREG,\n"
                     + "REGISTROS.FECHA_CURSO AS FECHA,\n"
                     + "REGISTROS.NOM_CONTROL AS NOMCONTROL\n"
                     + "FROM REGISTROS\n"
@@ -104,6 +106,7 @@ public class RegistrosDao extends Dao {
                 reg = new Registros();
                 reg.setNumOrdenView(rs.getString("ORDEN"));
                 reg.setNomPerView(rs.getString("NOMBRES"));
+                reg.setCodRegView(rs.getString("CODREG"));
                 reg.setAsisView(rs.getString("ASISTENCIA"));
                 reg.setNotaView(rs.getString("NOTA"));
                 lista.add(reg);
@@ -162,6 +165,20 @@ public class RegistrosDao extends Dao {
             ps.setString(4, reg.getAsisReg());
             ps.setString(5, reg.getFechaReg());
             ps.setString(6, reg.getNomCriterio());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+    
+    public void updateRegistro() throws Exception{
+        try {
+            this.Conexion();
+            String sql = "UPDATE REGISTROS SET ASIS_CURSO = ?,NOTA_CURSO = ? WHERE COD_REG = ?";
+            PreparedStatement ps = this.getCn().prepareStatement(sql);
+            ps.setString(1, sql);
+            ps.setString(2, sql);
+            ps.setString(3, sql);
             ps.executeUpdate();
         } catch (SQLException e) {
             throw e;
