@@ -104,6 +104,8 @@ public class RegistrosController implements Serializable {
             throw e;
         }
     }
+    
+    
 
     public void consultarReg() throws Exception {
         RegistrosDao dao;

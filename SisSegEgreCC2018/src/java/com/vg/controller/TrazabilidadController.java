@@ -20,6 +20,9 @@ public class TrazabilidadController implements Serializable {
     private List<Trazabilidad> lstTrazabildad;
     private List<Trazabilidad> lstTrazabildad2;
     private Trazabilidad selected;
+    private String alu;
+    
+    private List<Trazabilidad> lstHistorial;
 
     Date time = new Date();
     SimpleDateFormat alltime = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
@@ -31,6 +34,15 @@ public class TrazabilidadController implements Serializable {
         } catch (SQLException ex) {
 
         }
+    }
+    
+    public void consultarHistorial(){
+    TrazabilidadDao dao;
+        try {
+            dao = new TrazabilidadDao();
+            lstHistorial = dao.consulta(alu);
+        } catch (Exception e) {
+        } 
     }
 
     public void mostrarTrazabilidad() throws SQLException {
@@ -69,6 +81,14 @@ public class TrazabilidadController implements Serializable {
         }
     }
 
+    public List<Trazabilidad> getLstHistorial() {
+        return lstHistorial;
+    }
+
+    public void setLstHistorial(List<Trazabilidad> lstHistorial) {
+        this.lstHistorial = lstHistorial;
+    }
+
     public List<Trazabilidad> getLstTrazabildad2() {
         return lstTrazabildad2;
     }
@@ -92,5 +112,14 @@ public class TrazabilidadController implements Serializable {
     public void setSelected(Trazabilidad selected) {
         this.selected = selected;
     }
+
+    public String getAlu() {
+        return alu;
+    }
+
+    public void setAlu(String alu) {
+        this.alu = alu;
+    }
+    
 
 }

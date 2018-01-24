@@ -9,6 +9,52 @@ import java.util.List;
 
 public class TrazabilidadDao extends Dao {
 
+    public List<Trazabilidad> consulta(String alu) throws Exception {
+        List<Trazabilidad> lista;
+        ResultSet rs;
+        try {
+            this.Conexion();
+            String sql = "SELECT \n"
+                    + "CONCAT(CONCAT(PERSONATEMP.NOM_EST,' '),PERSONATEMP.APE_EST) AS NOM_REG,\n"
+                    + "CARRERAS.NOM_CAR  AS CAR_REG,\n"
+                    + "REGISTROS.FECHA_CURSO AS FECH_REG,\n"
+                    + "CURSOS.NOM_CURSO AS CUR_REG,\n"
+                    + "REGISTROS.NOTA_CURSO AS NOT_REG,\n"
+                    + "REGISTROS.NOM_CONTROL AS CONT_REG,\n"
+                    + "REGISTROS.ASIS_CURSO AS ASIS_REG\n"
+                    + "FROM REGISTROS\n"
+                    + "INNER JOIN TRAZABILIDAD ON \n"
+                    + "     TRAZABILIDAD.COD_TRAZ = REGISTROS.COD_TRAZ\n"
+                    + "INNER JOIN PERSONATEMP ON\n"
+                    + "    TRAZABILIDAD.COD_EST = PERSONATEMP.COD_EST\n"
+                    + "INNER JOIN CARRERAS ON\n"
+                    + "    TRAZABILIDAD.COD_CAR = CARRERAS.COD_CAR\n"
+                    + "INNER JOIN CURSOS ON \n"
+                    + "    CURSOS.COD_CAR = CARRERAS.COD_CAR\n"
+                    + "WHERE TRAZABILIDAD.COD_EST = ? \n"
+                    + "ORDER BY REGISTROS.FECHA_CURSO";
+            PreparedStatement ps = this.getCn().prepareStatement(sql);
+            ps.setString(1, alu);
+            rs = ps.executeQuery();
+            lista = new ArrayList();
+            Trazabilidad reg;
+            while (rs.next()) {
+                reg = new Trazabilidad();
+                reg.setNOMREG(rs.getString("NOM_REG"));
+                reg.setCARREG(rs.getString("CAR_REG"));
+                reg.setFECHREG(rs.getString("FECH_REG"));
+                reg.setCURREG(rs.getString("CUR_REG"));
+                reg.setNOTREG(rs.getString("NOT_REG"));
+                reg.setCONTREG(rs.getString("CONT_REG"));
+                reg.setASISREG(rs.getString("ASIS_REG"));
+                lista.add(reg);
+            }
+        } catch (SQLException e) {
+            throw e;
+        }
+        return lista;
+    }
+
     public List<Trazabilidad> mostrarTrazabilidad() throws SQLException {
         List<Trazabilidad> lista;
         this.Conexion();
@@ -66,8 +112,8 @@ public class TrazabilidadDao extends Dao {
             throw e;
         }
     }
-    
-    public void updateAlumTraz(Trazabilidad traz) throws Exception{
+
+    public void updateAlumTraz(Trazabilidad traz) throws Exception {
         try {
             this.Conexion();
             String sql = "INSERT INTO TRAZABILIDAD(COD_EST,COD_CAR,SECCION,MOD_ING,ANO_TRAZ,FECHA_TRAZ,EST_TRAZ) VALUES (?,?,?,?,?,SYSDATE,?)";
@@ -83,7 +129,7 @@ public class TrazabilidadDao extends Dao {
             throw e;
         }
     }
-    
+
     public void cambiarEstadoE(String codTraz) throws Exception {
         try {
             this.Conexion();

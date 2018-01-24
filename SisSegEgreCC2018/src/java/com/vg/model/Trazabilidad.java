@@ -4,6 +4,64 @@ public class Trazabilidad {
 
     private String NOMBRES, DNI, CARRERA, SECCION, MODING, YEAR, CODTRAZ, CODEST, ESTADO,FECHA;
     private String CodCarrera, ModoIngreso, TimeActual;
+    private String NOMREG,CARREG,FECHREG,CURREG,NOTREG,CONTREG,ASISREG;
+
+    public String getNOMREG() {
+        return NOMREG;
+    }
+
+    public void setNOMREG(String NOMREG) {
+        this.NOMREG = NOMREG;
+    }
+
+    public String getCARREG() {
+        return CARREG;
+    }
+
+    public void setCARREG(String CARREG) {
+        this.CARREG = CARREG;
+    }
+
+    public String getFECHREG() {
+        return FECHREG;
+    }
+
+    public void setFECHREG(String FECHREG) {
+        this.FECHREG = FECHREG;
+    }
+
+    public String getCURREG() {
+        return CURREG;
+    }
+
+    public void setCURREG(String CURREG) {
+        this.CURREG = CURREG;
+    }
+
+    public String getNOTREG() {
+        return NOTREG;
+    }
+
+    public void setNOTREG(String NOTREG) {
+        this.NOTREG = NOTREG;
+    }
+
+    public String getCONTREG() {
+        return CONTREG;
+    }
+
+    public void setCONTREG(String CONTREG) {
+        this.CONTREG = CONTREG;
+    }
+
+    public String getASISREG() {
+        return ASISREG;
+    }
+
+    public void setASISREG(String ASISREG) {
+        this.ASISREG = ASISREG;
+    }
+    
 
     public String getFECHA() {
         return FECHA;
