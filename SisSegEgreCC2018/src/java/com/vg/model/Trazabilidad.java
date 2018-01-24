@@ -1,10 +1,18 @@
 package com.vg.model;
 
 public class Trazabilidad {
-
+    private String cod_his;
     private String NOMBRES, DNI, CARRERA, SECCION, MODING, YEAR, CODTRAZ, CODEST, ESTADO,FECHA;
     private String CodCarrera, ModoIngreso, TimeActual;
     private String NOMREG,CARREG,FECHREG,CURREG,NOTREG,CONTREG,ASISREG;
+
+    public String getCod_his() {
+        return cod_his;
+    }
+
+    public void setCod_his(String cod_his) {
+        this.cod_his = cod_his;
+    }
 
     public String getNOMREG() {
         return NOMREG;

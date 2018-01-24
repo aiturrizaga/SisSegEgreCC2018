@@ -9,7 +9,50 @@ import java.util.List;
 
 public class TrazabilidadDao extends Dao {
 
-    public List<Trazabilidad> consulta(String alu) throws Exception {
+    public String leerHist(String a) throws Exception {
+        this.Conexion();
+        ResultSet rs;
+        try {
+            String sql = "SELECT PERSONATEMP.COD_EST AS COD_EST FROM trazabilidad \n"
+                    + "INNER JOIN PERSONATEMP ON trazabilidad.COD_EST = PERSONATEMP.COD_EST WHERE CONCAT(CONCAT(PERSONATEMP.NOM_EST,' '),PERSONATEMP.APE_EST) = ?";
+            PreparedStatement ps = this.getCn().prepareCall(sql);
+            ps.setString(1, a);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getString("COD_EST");
+            }
+            return null;
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+    }
+
+    public List<String> queryAutoCompleteHist(String a) throws SQLException {
+        this.Conexion();
+        ResultSet rs;
+        List<String> lista;
+        try {
+
+            String sql = "SELECT DISTINCT CONCAT(CONCAT(PERSONATEMP.NOM_EST,' '),PERSONATEMP.APE_EST) AS NOMBRES FROM trazabilidad \n"
+                    + "INNER JOIN PERSONATEMP ON trazabilidad.COD_EST = PERSONATEMP.COD_EST WHERE NOM_EST LIKE UPPER( ? )";
+            PreparedStatement ps = this.getCn().prepareCall(sql);
+            ps.setString(1, "%" + a + "%");
+            rs = ps.executeQuery();
+            lista = new ArrayList();
+            while (rs.next()) {
+                lista.add(rs.getString("NOMBRES"));
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+    }
+
+    public List<Trazabilidad> consulta(String traz) throws Exception {
         List<Trazabilidad> lista;
         ResultSet rs;
         try {
@@ -17,11 +60,14 @@ public class TrazabilidadDao extends Dao {
             String sql = "SELECT \n"
                     + "CONCAT(CONCAT(PERSONATEMP.NOM_EST,' '),PERSONATEMP.APE_EST) AS NOM_REG,\n"
                     + "CARRERAS.NOM_CAR  AS CAR_REG,\n"
-                    + "REGISTROS.FECHA_CURSO AS FECH_REG,\n"
+                    + "TO_CHAR(REGISTROS.FECHA_CURSO,'dd/MM/YYYY') AS FECH_REG,\n"
                     + "CURSOS.NOM_CURSO AS CUR_REG,\n"
                     + "REGISTROS.NOTA_CURSO AS NOT_REG,\n"
                     + "REGISTROS.NOM_CONTROL AS CONT_REG,\n"
-                    + "REGISTROS.ASIS_CURSO AS ASIS_REG\n"
+                    + "CASE  \n"
+                    + "                        WHEN REGISTROS.ASIS_CURSO = 'A' THEN 'ASISTIO'\n"
+                    + "                        WHEN REGISTROS.ASIS_CURSO = 'I' THEN 'INASISTIO'\n"
+                    + "                    END AS ASIS_REG\n"
                     + "FROM REGISTROS\n"
                     + "INNER JOIN TRAZABILIDAD ON \n"
                     + "     TRAZABILIDAD.COD_TRAZ = REGISTROS.COD_TRAZ\n"
@@ -34,7 +80,7 @@ public class TrazabilidadDao extends Dao {
                     + "WHERE TRAZABILIDAD.COD_EST = ? \n"
                     + "ORDER BY REGISTROS.FECHA_CURSO";
             PreparedStatement ps = this.getCn().prepareStatement(sql);
-            ps.setString(1, alu);
+            ps.setString(1, traz);
             rs = ps.executeQuery();
             lista = new ArrayList();
             Trazabilidad reg;

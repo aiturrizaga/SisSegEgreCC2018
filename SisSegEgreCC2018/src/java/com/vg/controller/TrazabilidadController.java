@@ -21,6 +21,7 @@ public class TrazabilidadController implements Serializable {
     private List<Trazabilidad> lstTrazabildad2;
     private Trazabilidad selected;
     private String alu;
+    Trazabilidad traz = new Trazabilidad();
     
     private List<Trazabilidad> lstHistorial;
 
@@ -35,13 +36,19 @@ public class TrazabilidadController implements Serializable {
 
         }
     }
+    public List<String> completeTextHis(String query) throws SQLException {
+        TrazabilidadDao dao = new TrazabilidadDao();
+        return dao.queryAutoCompleteHist(query);
+    }
     
-    public void consultarHistorial(){
+    public void consultarHistorial() throws Exception{
     TrazabilidadDao dao;
         try {
-            dao = new TrazabilidadDao();
-            lstHistorial = dao.consulta(alu);
+            dao = new TrazabilidadDao();         
+            traz.setCod_his(dao.leerHist(traz.getCod_his()));
+            lstHistorial = dao.consulta(traz.getCod_his());
         } catch (Exception e) {
+            throw e;
         } 
     }
 
@@ -79,6 +86,14 @@ public class TrazabilidadController implements Serializable {
         } catch (Exception e) {
             throw e;
         }
+    }
+
+    public Trazabilidad getTraz() {
+        return traz;
+    }
+
+    public void setTraz(Trazabilidad traz) {
+        this.traz = traz;
     }
 
     public List<Trazabilidad> getLstHistorial() {

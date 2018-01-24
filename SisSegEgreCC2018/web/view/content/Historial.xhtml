@@ -11,28 +11,37 @@
 
             <ui:define name="content">
                 <h:form>
+                    <div class="row">
+                        <div class="col s12 m6 offset-m3" >
+                    <p:autoComplete dropdown="true" maxResults="10" value="#{trazabilidadController.traz.cod_his}" 
+                                    completeMethod="#{trazabilidadController.completeTextHis}" style="width: 100%"
+                                    placeholder="Nombre del Alumno" emptyMessage="No se encontro ningún registro"/>
+                        </div>
+                    </div>
                     <p:inputText value="#{trazabilidadController.alu}"/>
                     <p:dataTable value="#{trazabilidadController.lstHistorial}" var="his" id="tblHis">
-                        <p:column groupRow="true">
+                        
+                        <p:column groupRow="true" headerText="Nombres">
                             <p:outputLabel value="#{his.NOMREG}" />    
                         </p:column>
-                        <p:column>
+                        <p:column headerText="Carrera" >
                             <p:outputLabel value="#{his.CARREG}"/>    
                         </p:column>
-                        <p:column>
+                        <p:column headerText="Fecha">
                             <p:outputLabel value="#{his.FECHREG}" />    
                         </p:column> 
-                        <p:column>
+                        <p:column headerText="Curso">
                             <p:outputLabel value="#{his.CURREG}"/>    
                         </p:column>
-                        <p:column>
-                            <p:outputLabel value="#{his.NOTREG}"/>    
-                        </p:column>
-                        <p:column>
+                        <p:column headerText="Nombre Control">
                             <p:outputLabel value="#{his.CONTREG}"/>    
                         </p:column>
-                        <p:column>
+                        <p:column headerText="Asistencia">
                             <p:outputLabel value="#{his.ASISREG}"/>    
+                        </p:column>
+                        
+                        <p:column headerText="Notas" rendered="#{his.NOTREG != '0'}">
+                            <p:outputLabel value="#{his.NOTREG}" rendered="#{his.NOTREG != '0'}"/>    
                         </p:column>
                     </p:dataTable>
                     <p:commandButton value="Consultar" update="tblHis" actionListener="#{trazabilidadController.consultarHistorial()}"/>
