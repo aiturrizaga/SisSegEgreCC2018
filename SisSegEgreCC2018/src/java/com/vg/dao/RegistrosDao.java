@@ -107,7 +107,11 @@ public class RegistrosDao extends Dao {
                 reg.setNumOrdenView(rs.getString("ORDEN"));
                 reg.setNomPerView(rs.getString("NOMBRES"));
                 reg.setCodRegView(rs.getString("CODREG"));
-                reg.setAsisView(rs.getString("ASISTENCIA"));
+                if ("A".equals(rs.getString("ASISTENCIA"))) {
+                    reg.setAsisReg(true);
+                }else{
+                    reg.setAsisReg(false);
+                }
                 reg.setNotaView(rs.getString("NOTA"));
                 lista.add(reg);
             }
@@ -162,7 +166,7 @@ public class RegistrosDao extends Dao {
             ps.setString(1, reg.getCodTrazReg());
             ps.setString(2, reg.getCodCurReg());
             ps.setString(3, reg.getNotasReg());
-            ps.setString(4, reg.getAsisReg());
+            ps.setString(4, reg.isAsisReg() ? "A" : "F");
             ps.setString(5, reg.getFechaReg());
             ps.setString(6, reg.getNomCriterio());
             ps.executeUpdate();

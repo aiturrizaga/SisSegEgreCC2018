@@ -61,6 +61,11 @@
                             <p:commandButton value="Ver registros" 
                                              onclick="PF('viewRegDialog').show();"
                                              style="float: right"/>
+
+                            <p:commandButton value="Prueba"
+                                             actionListener="#{registrosController.prueba()}"
+                                             style="float: right" update="tblReg"/>
+
                         </div>
                     </div>
 
@@ -73,16 +78,8 @@
                         <p:column headerText="Estudiantes">
                             <p:outputLabel value="#{reg.nomPerReg}" style="color: #000"/>
                         </p:column>
-                        <p:column headerText="Asistencia" style="width: 10%" >
-                            <p:cellEditor>
-                                <f:facet name="output"><center><p:outputLabel value="#{reg.asisReg}" style="color: #000"/></center></f:facet>
-                                <f:facet name="input">
-                                    <p:selectOneMenu value="#{reg.asisReg}" style="width: 100%; color: #000">
-                                        <f:selectItem itemLabel="A" itemValue="A"/>
-                                        <f:selectItem itemLabel="F" itemValue="F"/>
-                                    </p:selectOneMenu>
-                                </f:facet>
-                            </p:cellEditor>
+                        <p:column headerText="Asistencia" style="width: 10%" id="colAs">
+                            <p:selectBooleanCheckbox value="#{reg.asisReg}"/>
                         </p:column>
 
                         <p:column rendered="#{registrosController.criterio}" headerText="#{registrosController.nombrec}" style="width: 10%">

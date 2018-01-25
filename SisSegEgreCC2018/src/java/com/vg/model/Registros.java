@@ -3,7 +3,7 @@ package com.vg.model;
 public class Registros {
 
     private String numOrdenReg, codTrazReg, notasReg = "0", fechaReg, nomCriterio, nomPerReg, seccionReg;
-    private String asisReg = "A";
+    private boolean asisReg = true;
     private String codCarReg, nomCarReg, codCurReg, nomCurReg;
     
     private String numOrdenView, nomPerView, asisView,notaView,codRegView;
@@ -106,11 +106,11 @@ public class Registros {
         this.fechaReg = fechaReg;
     }
 
-    public String getAsisReg() {
+    public boolean isAsisReg() {
         return asisReg;
     }
 
-    public void setAsisReg(String asisReg) {
+    public void setAsisReg(boolean asisReg) {
         this.asisReg = asisReg;
     }
 

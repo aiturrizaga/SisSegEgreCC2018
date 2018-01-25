@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.control.TableColumn.CellEditEvent;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -32,7 +31,9 @@ public class RegistrosController implements Serializable {
     private boolean criterio = false;
     private boolean buttonCriterio = true;
     private String Fecha1;
+    private String asis = "1";
     private Registros selected;
+    private Registros selectedReg;
 
     Date ahora = new Date();
     SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
@@ -48,9 +49,7 @@ public class RegistrosController implements Serializable {
             Logger.getLogger(RegistrosController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    
+
     public void listaNueva() throws Exception {
         RegistrosDao dao;
         try {
@@ -60,17 +59,17 @@ public class RegistrosController implements Serializable {
             throw e;
         }
     }
-    
+
     public void addCriterio() {
         criterio = true;
         ocultarAddCriterio();
     }
-    
-    public void ocultarAddCriterio(){
+
+    public void ocultarAddCriterio() {
         buttonCriterio = false;
     }
-    
-    public void borrarCriterio(){
+
+    public void borrarCriterio() {
         setNombrec(null);
         reg.setNotasReg("");
         buttonCriterio = true;
@@ -106,8 +105,6 @@ public class RegistrosController implements Serializable {
             throw e;
         }
     }
-    
-    
 
     public void consultarReg() throws Exception {
         RegistrosDao dao;
@@ -146,8 +143,8 @@ public class RegistrosController implements Serializable {
             throw e;
         }
     }
-    
-    public void updateRegistro() throws Exception{
+
+    public void updateRegistro() throws Exception {
         RegistrosDao dao;
         try {
             dao = new RegistrosDao();
@@ -159,6 +156,14 @@ public class RegistrosController implements Serializable {
         }
     }
 
+    public Registros getSelectedReg() {
+        return selectedReg;
+    }
+
+    public void setSelectedReg(Registros selectedReg) {
+        this.selectedReg = selectedReg;
+    }
+    
     public Registros getSelected() {
         return selected;
     }
@@ -170,17 +175,17 @@ public class RegistrosController implements Serializable {
     public Date getFecha2() {
         return fecha2;
     }
-    
+
     public Date getFecha3() {
         return fecha3;
     }
-    
+
     public List<Registros> getLstNuevo() {
         return lstNuevo;
     }
 
     //Getter and Setter
-    public void setLstNuevo(List<Registros> lstNuevo) {    
+    public void setLstNuevo(List<Registros> lstNuevo) {
         this.lstNuevo = lstNuevo;
     }
 
@@ -191,8 +196,8 @@ public class RegistrosController implements Serializable {
     public void setButtonCriterio(boolean buttonCriterio) {
         this.buttonCriterio = buttonCriterio;
     }
-    
-    public void setFecha3(Date fecha3) {    
+
+    public void setFecha3(Date fecha3) {
         this.fecha3 = fecha3;
     }
 
