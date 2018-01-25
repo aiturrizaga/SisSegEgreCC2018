@@ -139,6 +139,7 @@ public class RegistrosController implements Serializable {
             }
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "COMPLETADO", "Correctamente"));
             lstRegistros = null;
+            borrarCriterio();
         } catch (Exception e) {
             throw e;
         }
